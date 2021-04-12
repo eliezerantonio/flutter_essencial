@@ -9,8 +9,16 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Hello flutter"),
       ),
-      body: SizedBox.expand(
-        child: _img(),
+      body: Container(
+        color: Colors.black,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _button(),
+            _button(),
+            _button(),
+          ],
+        ),
       ),
     );
   }
@@ -34,5 +42,18 @@ class HomeScreen extends StatelessWidget {
       "assets/images/dog1.png",
       fit: BoxFit.cover,
     );
+  }
+
+  _button() {
+    return RaisedButton(
+      color: Colors.blue,
+      textColor: Colors.white,
+      onPressed: _onClickOk,
+      child: Text("ok"),
+    );
+  }
+
+  void _onClickOk() {
+    print("Clicou no botao");
   }
 }
