@@ -9,22 +9,30 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Hello flutter"),
       ),
-      body: Container(
-        padding: EdgeInsets.all(16),
-        child: Center(
-          child: Text(
-            "Hello Word",
-            style: TextStyle(
-              fontSize: 30,
-              color: Colors.blue,
-              fontWeight: FontWeight.bold,
-              decoration: TextDecoration.underline,
-              decorationColor: Colors.red,
-              decorationStyle: TextDecorationStyle.dashed,
-            ),
-          ),
-        ),
+      body: SizedBox.expand(
+        child: _img(),
       ),
+    );
+  }
+
+  Text _text() {
+    return Text(
+      "Hello Word",
+      style: TextStyle(
+        fontSize: 30,
+        color: Colors.blue,
+        fontWeight: FontWeight.bold,
+        decoration: TextDecoration.underline,
+        decorationColor: Colors.red,
+        decorationStyle: TextDecorationStyle.dashed,
+      ),
+    );
+  }
+
+  _img() {
+    return Image.asset(
+      "assets/images/dog1.png",
+      fit: BoxFit.cover,
     );
   }
 }
