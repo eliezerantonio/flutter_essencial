@@ -11,12 +11,10 @@ class HomeScreen extends StatelessWidget {
         title: Text("Hello flutter"),
       ),
       body: Container(
-        height: size.height,
-        color: Colors.black,
-        child: Row(
+        child: Column(
           children: [
-            _button(),
-            _button(),
+            _text(),
+            _img(),
             _button(),
           ],
         ),
