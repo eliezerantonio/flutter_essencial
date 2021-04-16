@@ -10,22 +10,20 @@ class HomeScreen extends StatelessWidget {
         title: Text("Hello flutter"),
       ),
       body: SingleChildScrollView(
-        child: _container(),
+        child: _container(context),
       ),
     );
   }
 
-  _container() {
+  _container(BuildContext context) {
     return Container(
       color: Colors.white,
       child: Column(
         children: [
           _text(),
           _pageView(),
-          _buttons(),
-          _text(),
-          _pageView(),
-          _buttons(),
+          _buttons( context),
+      
         ],
       ),
     );
@@ -68,27 +66,27 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  _button(String text) {
+  _button(BuildContext context,String text) {
     return RaisedButton(
       color: Colors.blue,
       textColor: Colors.white,
-      onPressed: _onClickOk,
+      onPressed: ()=>_onClickOk(context),
       child: Text(text),
     );
   }
 
-  void _onClickOk() {
-    print("Clicou no botao");
+  void _onClickOk(BuildContext context) {
+ Navigator.push(context, route)
   }
 
-  _buttons() {
+  _buttons(BuildContext context) {
     return Column(children: [
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _button("ListView"),
-          _button("Page 2"),
-          _button("Page 3"),
+          _button(context,"ListView"),
+          _button(context,"Page 2"),
+          _button(context,"Page 3"),
         ],
       ),
       Row(
