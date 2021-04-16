@@ -1,4 +1,6 @@
 import 'package:basico_e_widgets/screens/hello_page1.dart';
+import 'package:basico_e_widgets/screens/hello_page2.dart';
+import 'package:basico_e_widgets/screens/hello_page3.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -23,7 +25,9 @@ class HomeScreen extends StatelessWidget {
         children: [
           _text(),
           _pageView(),
-          _buttons(context),
+          _buttons(
+            context,
+          ),
         ],
       ),
     );
@@ -66,42 +70,59 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  _button(BuildContext context, String text) {
+  _button(BuildContext context, String text, Function onClick) {
     return RaisedButton(
       color: Colors.blue,
       textColor: Colors.white,
-      onPressed: () => _onClickOk(context),
+      onPressed: onClick,
       child: Text(text),
     );
   }
 
-  void _onClickOk(BuildContext context) {
+  void _onClickNavigator(BuildContext context, Widget page) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => HelloPage1(),
+        builder: (context) => page,
       ),
     );
   }
 
-  _buttons(BuildContext context) {
+  _buttons(
+    BuildContext context,
+  ) {
     return Column(children: [
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _button(context, "ListView"),
-          _button(context, "Page 2"),
-          _button(context, "Page 3"),
+          _button(context, "ListView",
+              () => _onClickNavigator(context, HelloPage1())),
+          _button(context, "Page 2",
+              () => _onClickNavigator(context, HelloPage2())),
+          _button(context, "Page 3",
+              () => _onClickNavigator(context, HelloPage3())),
         ],
       ),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _button(context, "Snack"),
-          _button(context, "Dialog"),
-          _button(context, "Toast"),
+          _button(context, "Snack", _onClickSnack),
+          _button(context, "Dialog", _onClickDialog),
+          _button(context, "Toast", _onClikToast),
         ],
       )
     ]);
   }
+
+  _onClickPage2() {}
+
+  _onClickPageView() {}
+
+  _onClickPage3() {}
+
+  _onClickSnack() {}
+
+  _onClickDialog() {}
+
+  _onClikToast() {}
 }
