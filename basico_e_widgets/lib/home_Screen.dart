@@ -43,6 +43,7 @@ class HomeScreen extends StatelessWidget {
 
   Container _pageView() {
     return Container(
+      margin: EdgeInsets.all(20),
       height: 300,
       child: PageView(
         children: [
