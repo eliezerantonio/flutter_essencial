@@ -5,45 +5,35 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text("Hello flutter"),
       ),
-      body: Container(
-        child: _buttons(),
+      body: SingleChildScrollView(
+        child: _container(),
       ),
     );
   }
 
-  Column _buttons() {
-    return Column(
-      children: [
-        _text(),
-        _pageView(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _button("ListView"),
-            _button("Page 2"),
-            _button("Page 3"),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _button("Snack"),
-            _button("Dialog"),
-            _button("Toast"),
-          ],
-        ),
-      ],
+  _container() {
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+          _text(),
+          _pageView(),
+          _buttons(),
+          _text(),
+          _pageView(),
+          _buttons(),
+        ],
+      ),
     );
   }
 
   Container _pageView() {
     return Container(
-      margin: EdgeInsets.all(20),
+      margin: EdgeInsets.only(top: 20, bottom: 40),
       height: 300,
       child: PageView(
         children: [
@@ -89,5 +79,26 @@ class HomeScreen extends StatelessWidget {
 
   void _onClickOk() {
     print("Clicou no botao");
+  }
+
+  _buttons() {
+    return Column(children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _button("ListView"),
+          _button("Page 2"),
+          _button("Page 3"),
+        ],
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _button("Snack"),
+          _button("Dialog"),
+          _button("Toast"),
+        ],
+      )
+    ]);
   }
 }
