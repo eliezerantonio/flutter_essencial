@@ -1,6 +1,7 @@
 import 'package:basico_e_widgets/screens/hello_page1.dart';
 import 'package:basico_e_widgets/screens/hello_page2.dart';
 import 'package:basico_e_widgets/screens/hello_page3.dart';
+import 'package:basico_e_widgets/widgets/blue_button.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -71,11 +72,9 @@ class HomeScreen extends StatelessWidget {
   }
 
   _button(BuildContext context, String text, Function onClick) {
-    return RaisedButton(
-      color: Colors.blue,
-      textColor: Colors.white,
+    return BlueButton(
+      text,
       onPressed: onClick,
-      child: Text(text),
     );
   }
 
@@ -96,20 +95,20 @@ class HomeScreen extends StatelessWidget {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _button(context, "ListView",
-              () => _onClickNavigator(context, HelloPage1())),
-          _button(context, "Page 2",
-              () => _onClickNavigator(context, HelloPage2())),
-          _button(context, "Page 3",
-              () => _onClickNavigator(context, HelloPage3())),
+          BlueButton("ListView",
+              onPressed: () => _onClickNavigator(context, HelloPage1())),
+          BlueButton("Page 2",
+              onPressed: () => _onClickNavigator(context, HelloPage2())),
+          BlueButton("Page 3",
+              onPressed: () => _onClickNavigator(context, HelloPage3())),
         ],
       ),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _button(context, "Snack", _onClickSnack),
-          _button(context, "Dialog", _onClickDialog),
-          _button(context, "Toast", _onClikToast),
+          BlueButton("Snack", onPressed: _onClickSnack),
+          BlueButton("Dialog", onPressed: _onClickDialog),
+          BlueButton("Toast", onPressed: _onClikToast),
         ],
       )
     ]);
