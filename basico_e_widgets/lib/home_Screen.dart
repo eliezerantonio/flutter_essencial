@@ -11,14 +11,33 @@ class HomeScreen extends StatelessWidget {
         title: Text("Hello flutter"),
       ),
       body: Container(
-        child: Column(
+        child: _buttons(),
+      ),
+    );
+  }
+
+  Column _buttons() {
+    return Column(
+      children: [
+        _text(),
+        _img(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _text(),
-            _img(),
-            _button(),
+            _button("ListView"),
+            _button("Page 2"),
+            _button("Page 3"),
           ],
         ),
-      ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            _button("Snack"),
+            _button("Dialog"),
+            _button("Toast"),
+          ],
+        ),
+      ],
     );
   }
 
@@ -43,12 +62,12 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  _button() {
+  _button(String text) {
     return RaisedButton(
       color: Colors.blue,
       textColor: Colors.white,
       onPressed: _onClickOk,
-      child: Text("ok"),
+      child: Text(text),
     );
   }
 
