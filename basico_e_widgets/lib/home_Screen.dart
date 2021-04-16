@@ -5,14 +5,15 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text("Hello flutter"),
       ),
       body: Container(
+        height: size.height,
         color: Colors.black,
         child: Row(
-          mainAxisSize: MainAxisSize.min,
           children: [
             _button(),
             _button(),
