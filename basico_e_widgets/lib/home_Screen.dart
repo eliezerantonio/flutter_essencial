@@ -1,6 +1,7 @@
 import 'package:basico_e_widgets/screens/hello_page1.dart';
 import 'package:basico_e_widgets/screens/hello_page2.dart';
 import 'package:basico_e_widgets/screens/hello_page3.dart';
+import 'package:basico_e_widgets/utils/nav.dart';
 import 'package:basico_e_widgets/widgets/blue_button.dart';
 import 'package:flutter/material.dart';
 
@@ -79,12 +80,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   void _onClickNavigator(BuildContext context, Widget page) async {
-    String s = await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => page,
-      ),
-    );
+    String s = await push(context, page);
     print(s);
   }
 

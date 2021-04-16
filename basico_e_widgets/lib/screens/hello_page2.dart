@@ -18,10 +18,10 @@ class HelloPage2 extends StatelessWidget {
     return Center(
       child: BlueButton(
         "Voltar",onPressed: 
-        () => _onClickVoltar(context),
+        () => onClickVoltar(context),
       ),
     );
   }
 
-  void _onClickVoltar(BuildContext context) => Navigator.pop(context, "Tela 2");
+  void onClickVoltar(BuildContext context) => Navigator.pop(context, "Tela 2");
 }
