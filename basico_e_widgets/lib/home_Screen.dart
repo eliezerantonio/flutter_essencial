@@ -79,13 +79,14 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  void _onClickNavigator(BuildContext context, Widget page) {
-    Navigator.push(
+  void _onClickNavigator(BuildContext context, Widget page) async {
+    String s = await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => page,
       ),
     );
+    print(s);
   }
 
   _buttons(
