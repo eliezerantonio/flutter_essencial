@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
     return Column(
       children: [
         _text(),
-        _img(),
+        _pageView(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -41,6 +41,21 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  Container _pageView() {
+    return Container(
+      height: 300,
+      child: PageView(
+        children: [
+          _img("1"),
+          _img("2"),
+          _img("3"),
+          _img("4"),
+          _img("5"),
+        ],
+      ),
+    );
+  }
+
   Text _text() {
     return Text(
       "Hello Word",
@@ -55,9 +70,9 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  _img() {
+  _img(String imgNumber) {
     return Image.asset(
-      "assets/images/dog1.png",
+      "assets/images/dog$imgNumber.png",
       fit: BoxFit.cover,
     );
   }
