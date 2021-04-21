@@ -5,6 +5,7 @@ import 'package:basico_e_widgets/screens/hello_page3.dart';
 import 'package:basico_e_widgets/utils/nav.dart';
 import 'package:basico_e_widgets/widgets/blue_button.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -148,5 +149,14 @@ class HomeScreen extends StatelessWidget {
             ));
   }
 
-  _onClikToast() {}
+  _onClikToast() {
+    Fluttertoast.showToast(
+      msg: "This is Center Short Toast",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      textColor: Colors.white,
+      fontSize: 16,
+    );
+  }
 }
