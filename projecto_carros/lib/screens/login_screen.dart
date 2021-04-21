@@ -32,26 +32,17 @@ class LoginScreen extends StatelessWidget {
             label: "Login",
             hint: "Digite o Login",
             controller: _controllerLogin,
-            validator: (String text) {
-              if (text.isEmpty) {
-                return "Preencha  o login";
-              }
-              return null;
-            }),
+            validator: _validatorLogin),
         SizedBox(
           height: 20,
         ),
         _text(
-            label: "Senha",
-            hint: "Digite a senha",
-            controller: _controllerSenha,
-            obscure: true,
-            validator: (String text) {
-              if (text.isEmpty) {
-                return "Preencha  a senha";
-              }
-              return null;
-            }),
+          label: "Senha",
+          hint: "Digite a senha",
+          controller: _controllerSenha,
+          obscure: true,
+          validator: _validatorSenha,
+        ),
         SizedBox(
           height: 20,
         ),
@@ -103,5 +94,23 @@ class LoginScreen extends StatelessWidget {
     String senha = _controllerSenha.text;
 
     print(login + " " + senha);
+  }
+
+  String _validatorLogin(
+    String value,
+  ) {
+    if (value.isEmpty) {
+      return "Digite o login";
+    }
+    return null;
+  }
+
+  String _validatorSenha(
+    String value,
+  ) {
+    if (value.isEmpty) {
+      return "Digite a Senha";
+    }
+    return null;
   }
 }
