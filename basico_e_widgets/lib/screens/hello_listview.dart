@@ -15,6 +15,7 @@ class HelloListView extends StatelessWidget {
 
   _body() {
     return ListView(
+      itemExtent: 300,
       children: [
         _img('1'),
         _img('2'),
