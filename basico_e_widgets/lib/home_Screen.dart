@@ -103,7 +103,7 @@ class HomeScreen extends StatelessWidget {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          BlueButton("Snack", onPressed: _onClickSnack),
+          BlueButton("Snack", onPressed: () => _onClickSnack(context)),
           BlueButton("Dialog", onPressed: _onClickDialog),
           BlueButton("Toast", onPressed: _onClikToast),
         ],
@@ -117,7 +117,13 @@ class HomeScreen extends StatelessWidget {
 
   _onClickPage3() {}
 
-  _onClickSnack() {}
+  _onClickSnack(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text("Hello SnackBar"),
+      duration: Duration(seconds: 2),
+      
+    ));
+  }
 
   _onClickDialog() {}
 

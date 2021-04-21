@@ -12,7 +12,11 @@ class DogScreen extends StatelessWidget {
         title: Text(dog.nome),
       ),
       body: Container(
-        child: Image.asset(dog.foto),
+        color: Colors.black,
+        child: Image.asset(
+          dog.foto,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
