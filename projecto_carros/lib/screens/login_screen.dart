@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:projecto_carros/widgets/app_button.dart';
+import 'package:projecto_carros/widgets/app_text.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -39,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
   ListView _formularioLogin() {
     return ListView(
       children: [
-        _text(
+        AppText(
           label: "Login",
           hint: "Digite o Login",
           controller: _controllerLogin,
@@ -50,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(
           height: 20,
         ),
-        _text(
+        AppText(
             label: "Senha",
             hint: "Digite a senha",
             controller: _controllerSenha,
@@ -58,42 +59,12 @@ class _LoginScreenState extends State<LoginScreen> {
             validator: _validatorSenha,
             keyboardType: TextInputType.number,
             textInputAction: TextInputAction.done,
-            focusNode: _focusSenha),
+            nextFocus: _focusSenha),
         SizedBox(
           height: 20,
         ),
         AppButton(text: "Login", onPressed: _onClikLogin),
       ],
-    );
-  }
-
-  Widget _text(
-      {String label,
-      String hint,
-      TextEditingController controller,
-      bool obscure = false,
-      FormFieldValidator<String> validator,
-      TextInputType keyboardType,
-      TextInputAction textInputAction,
-      FocusNode focusNode}) {
-    return TextFormField(
-      controller: controller,
-      obscureText: obscure,
-      keyboardType: keyboardType,
-      textInputAction: textInputAction,
-      focusNode: focusNode,
-      onFieldSubmitted: (String text) {
-        FocusScope.of(context).requestFocus(_focusSenha);
-      },
-      style: TextStyle(fontSize: 20, color: Colors.blue),
-      decoration: InputDecoration(
-        labelText: label,
-        hintText: hint,
-        labelStyle: TextStyle(
-          color: Colors.grey,
-        ),
-      ),
-      validator: validator,
     );
   }
 
