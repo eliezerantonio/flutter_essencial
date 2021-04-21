@@ -14,32 +14,48 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        drawer: DrawerList(),
-        appBar: AppBar(
-          title: Text("Hello flutter"),
-        ),
-        body: SingleChildScrollView(
-          child: _container(context),
-        ),
-        floatingActionButton: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            FloatingActionButton(
-              child: Icon(Icons.add),
-              onPressed: () {
-                _onClickFab();
-              },
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+          drawer: DrawerList(),
+          appBar: AppBar(
+            title: Text("Hello flutter"),
+            bottom: TabBar(
+              tabs: [
+                Text("data1"),
+                Text("data2"),
+                Text("data3"),
+              ],
             ),
-            SizedBox(width: 8),
-            FloatingActionButton(
-              child: Icon(Icons.favorite),
-              onPressed: () {
-                _onClickFab();
-              },
-            ),
-          ],
-        ));
+          ),
+          body: TabBarView(
+            children: [
+              SingleChildScrollView(
+                child: _container(context),
+              ),
+              Text("data2"),
+              Text("data3"),
+            ],
+          ),
+          floatingActionButton: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FloatingActionButton(
+                child: Icon(Icons.add),
+                onPressed: () {
+                  _onClickFab();
+                },
+              ),
+              SizedBox(width: 8),
+              FloatingActionButton(
+                child: Icon(Icons.favorite),
+                onPressed: () {
+                  _onClickFab();
+                },
+              ),
+            ],
+          )),
+    );
   }
 
   _container(BuildContext context) {
