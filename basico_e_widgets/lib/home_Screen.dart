@@ -104,7 +104,7 @@ class HomeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           BlueButton("Snack", onPressed: () => _onClickSnack(context)),
-          BlueButton("Dialog", onPressed: _onClickDialog),
+          BlueButton("Dialog", onPressed: () => _onClickDialog(context)),
           BlueButton("Toast", onPressed: _onClikToast),
         ],
       )
@@ -121,11 +121,32 @@ class HomeScreen extends StatelessWidget {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text("Hello SnackBar"),
       duration: Duration(seconds: 2),
-      
     ));
   }
 
-  _onClickDialog() {}
+  _onClickDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => WillPopScope(
+              onWillPop: () async => false,
+              child: AlertDialog(
+                title: Text("Hello Alert"),
+                actions: [
+                  FlatButton(
+                    child: Text("Cancelar"),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  FlatButton(
+                    child: Text("OK"),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ));
+  }
 
   _onClikToast() {}
 }
