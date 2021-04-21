@@ -1,3 +1,4 @@
+import 'package:basico_e_widgets/models/dog.dart';
 import 'package:flutter/material.dart';
 
 class HelloListView extends StatelessWidget {
@@ -14,22 +15,42 @@ class HelloListView extends StatelessWidget {
   }
 
   _body() {
-    return ListView(
+    final List<Dog> dogs = [
+      Dog(
+        nome: "Jack Russel",
+        foto: "assets/images/dog1.png",
+      ),
+      Dog(
+        nome: "Labrador",
+        foto: "assets/images/dog2.png",
+      ),
+      Dog(
+        nome: "Pug",
+        foto: "assets/images/dog3.png",
+      ),
+      Dog(
+        nome: "Rottweiller",
+        foto: "assets/images/dog4.png",
+      ),
+      Dog(
+        nome: "Pastor",
+        foto: "assets/images/dog5.png",
+      ),
+    ];
+
+    return ListView.builder(
       itemExtent: 300,
-      children: [
-        _img('1'),
-        _img('2'),
-        _img('3'),
-        _img('4'),
-        _img('5'),
-      ],
+      itemCount: dogs.length,
+      itemBuilder: (context, index) {
+        return _img(dogs[index].foto);
+      },
     );
   }
 }
 
-_img(String imgNumber) {
+_img(String foto) {
   return Image.asset(
-    "assets/images/dog$imgNumber.png",
+    foto,
     fit: BoxFit.cover,
   );
 }
