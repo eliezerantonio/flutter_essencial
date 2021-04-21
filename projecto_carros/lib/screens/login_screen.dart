@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -20,31 +22,39 @@ class LoginScreen extends StatelessWidget {
   ListView _formularioLogin() {
     return ListView(
       children: [
-        TextFormField(
-          decoration: InputDecoration(
-            labelText: "Login",
-          ),
-        ),
+        _text("Login", "Digite o Login"),
         SizedBox(
           height: 20,
         ),
-        TextFormField(
-          obscureText: true,
-          decoration: InputDecoration(
-            labelText: "Password",
-          ),
-        ),
+        _text("Senha", "Digite a senha", obscure: true),
         SizedBox(
           height: 20,
         ),
-        Container(
-          height: 46,
-          child: RaisedButton(
-            onPressed: () {},
-            child: Text("Login"),
-          ),
-        ),
+        _button("Login"),
       ],
+    );
+  }
+
+  Container _button(String text) {
+    return Container(
+      height: 46,
+      child: RaisedButton(
+        onPressed: () {},
+        child: Text(text),
+      ),
+    );
+  }
+
+  Widget _text(String label, String hint, {bool obscure = false}) {
+    return TextFormField(
+      obscureText: obscure,
+      style: TextStyle(fontSize: 20, color: Colors.blue),
+      decoration: InputDecoration(
+          labelText: label,
+          hintText: hint,
+          labelStyle: TextStyle(
+            color: Colors.grey,
+          )),
     );
   }
 }
