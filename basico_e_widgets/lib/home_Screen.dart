@@ -13,13 +13,30 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Hello flutter"),
-      ),
-      body: SingleChildScrollView(
-        child: _container(context),
-      ),
-    );
+        appBar: AppBar(
+          title: Text("Hello flutter"),
+        ),
+        body: SingleChildScrollView(
+          child: _container(context),
+        ),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () {
+                _onClickFab();
+              },
+            ),
+            SizedBox(width: 8),
+            FloatingActionButton(
+              child: Icon(Icons.favorite),
+              onPressed: () {
+                _onClickFab();
+              },
+            ),
+          ],
+        ));
   }
 
   _container(BuildContext context) {
@@ -159,4 +176,6 @@ class HomeScreen extends StatelessWidget {
       fontSize: 16,
     );
   }
+
+  void _onClickFab() {}
 }
