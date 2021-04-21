@@ -2,10 +2,20 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final _controllerLogin = TextEditingController();
+
   final _controllerSenha = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
+
+  final _focusSenha = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,20 +39,25 @@ class LoginScreen extends StatelessWidget {
     return ListView(
       children: [
         _text(
-            label: "Login",
-            hint: "Digite o Login",
-            controller: _controllerLogin,
-            validator: _validatorLogin),
+          label: "Login",
+          hint: "Digite o Login",
+          controller: _controllerLogin,
+          validator: _validatorLogin,
+          keyboardType: TextInputType.emailAddress,
+          textInputAction: TextInputAction.next,
+        ),
         SizedBox(
           height: 20,
         ),
         _text(
-          label: "Senha",
-          hint: "Digite a senha",
-          controller: _controllerSenha,
-          obscure: true,
-          validator: _validatorSenha,
-        ),
+            label: "Senha",
+            hint: "Digite a senha",
+            controller: _controllerSenha,
+            obscure: true,
+            validator: _validatorSenha,
+            keyboardType: TextInputType.number,
+            textInputAction: TextInputAction.done,
+            focusNode: _focusSenha),
         SizedBox(
           height: 20,
         ),
@@ -68,10 +83,19 @@ class LoginScreen extends StatelessWidget {
       String hint,
       TextEditingController controller,
       bool obscure = false,
-      FormFieldValidator<String> validator}) {
+      FormFieldValidator<String> validator,
+      TextInputType keyboardType,
+      TextInputAction textInputAction,
+      FocusNode focusNode}) {
     return TextFormField(
       controller: controller,
       obscureText: obscure,
+      keyboardType: keyboardType,
+      textInputAction: textInputAction,
+      focusNode: focusNode,
+      onFieldSubmitted: (String text) {
+        FocusScope.of(context).requestFocus(_focusSenha);
+      },
       style: TextStyle(fontSize: 20, color: Colors.blue),
       decoration: InputDecoration(
         labelText: label,
