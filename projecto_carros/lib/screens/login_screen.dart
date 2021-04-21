@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class LoginScreen extends StatelessWidget {
   final _controllerLogin = TextEditingController();
   final _controllerSenha = TextEditingController();
-
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,19 +17,41 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Container _body() => Container(
-        padding: EdgeInsets.all(16),
-        child: _formularioLogin(),
+  Widget _body() => Form(
+        key: _formKey,
+        child: Container(
+          padding: EdgeInsets.all(16),
+          child: _formularioLogin(),
+        ),
       );
 
   ListView _formularioLogin() {
     return ListView(
       children: [
-        _text("Login", "Digite o Login", _controllerLogin),
+        _text(
+            label: "Login",
+            hint: "Digite o Login",
+            controller: _controllerLogin,
+            validator: (String text) {
+              if (text.isEmpty) {
+                return "Preencha  o login";
+              }
+              return null;
+            }),
         SizedBox(
           height: 20,
         ),
-        _text("Senha", "Digite a senha", _controllerSenha, obscure: true),
+        _text(
+            label: "Senha",
+            hint: "Digite a senha",
+            controller: _controllerSenha,
+            obscure: true,
+            validator: (String text) {
+              if (text.isEmpty) {
+                return "Preencha  a senha";
+              }
+              return null;
+            }),
         SizedBox(
           height: 20,
         ),
@@ -50,22 +72,33 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget _text(String label, String hint, TextEditingController controller,
-      {bool obscure = false}) {
+  Widget _text(
+      {String label,
+      String hint,
+      TextEditingController controller,
+      bool obscure = false,
+      FormFieldValidator<String> validator}) {
     return TextFormField(
       controller: controller,
       obscureText: obscure,
       style: TextStyle(fontSize: 20, color: Colors.blue),
       decoration: InputDecoration(
-          labelText: label,
-          hintText: hint,
-          labelStyle: TextStyle(
-            color: Colors.grey,
-          )),
+        labelText: label,
+        hintText: hint,
+        labelStyle: TextStyle(
+          color: Colors.grey,
+        ),
+      ),
+      validator: validator,
     );
   }
 
   _onClikLogin() {
+    bool formOk = _formKey.currentState.validate();
+
+    if (!formOk) {
+      return;
+    }
     String login = _controllerLogin.text;
     String senha = _controllerSenha.text;
 
