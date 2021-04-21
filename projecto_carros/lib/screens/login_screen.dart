@@ -99,8 +99,11 @@ class LoginScreen extends StatelessWidget {
   String _validatorLogin(
     String value,
   ) {
-    if (value.isEmpty) {
+    if (value.trim().isEmpty) {
       return "Digite o login";
+    }
+    if (value.length < 4) {
+      return "O login precisa ter 4 digitos";
     }
     return null;
   }
@@ -108,8 +111,11 @@ class LoginScreen extends StatelessWidget {
   String _validatorSenha(
     String value,
   ) {
-    if (value.isEmpty) {
+    if (value.trim().isEmpty) {
       return "Digite a Senha";
+    }
+    if (value.length < 4) {
+      return "A senha precisa ter 4 digitos";
     }
     return null;
   }
