@@ -9,6 +9,13 @@ class AppButton extends StatelessWidget {
     return Container(
       height: 46,
       child: RaisedButton(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+            bottomLeft: Radius.circular(30),
+          ),
+        ),
         color: Colors.blue,
         textColor: Colors.white,
         onPressed: onPressed,

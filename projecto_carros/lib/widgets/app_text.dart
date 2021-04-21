@@ -9,14 +9,13 @@ class AppText extends StatelessWidget {
     this.keyboardType,
     this.textInputAction,
     this.nextFocus,
-    this.obscure=false,
-
+    this.obscure = false,
   });
 
   final String label;
   final String hint;
   final TextEditingController controller;
-  final bool obscure ;
+  final bool obscure;
   final FormFieldValidator<String> validator;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
@@ -37,6 +36,7 @@ class AppText extends StatelessWidget {
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
         labelStyle: TextStyle(
           color: Colors.grey,
         ),
