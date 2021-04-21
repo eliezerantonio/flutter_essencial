@@ -8,12 +8,13 @@ class AppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 46,
+      width: 400,
       child: RaisedButton(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-            bottomLeft: Radius.circular(30),
+            topLeft: Radius.circular(40),
+            topRight: Radius.circular(40),
+            bottomLeft: Radius.circular(40),
           ),
         ),
         color: Colors.blue,

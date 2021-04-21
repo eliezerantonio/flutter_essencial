@@ -25,7 +25,9 @@ class _LoginScreenState extends State<LoginScreen> {
         title: Text("Carros"),
         centerTitle: true,
       ),
-      body: _body(),
+      body: Center(
+        child: _body(),
+      ),
     );
   }
 
@@ -37,8 +39,9 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
 
-  ListView _formularioLogin() {
-    return ListView(
+  Widget _formularioLogin() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         AppText(
           label: "Login",
@@ -76,8 +79,6 @@ class _LoginScreenState extends State<LoginScreen> {
     }
     String login = _controllerLogin.text;
     String senha = _controllerSenha.text;
-
-    print(login + " " + senha);
   }
 
   String _validatorLogin(
