@@ -38,8 +38,9 @@ class HelloListView extends StatelessWidget {
       ),
     ];
 
-    return ListView.builder(
-      itemExtent: 300,
+    return GridView.builder(
+      gridDelegate:
+          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       itemCount: dogs.length,
       itemBuilder: (context, index) {
         //SizedBox.Expanded
