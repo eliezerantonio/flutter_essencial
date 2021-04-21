@@ -33,7 +33,7 @@ class LoginScreen extends StatelessWidget {
         SizedBox(
           height: 20,
         ),
-        _button("Login", () => _onClikLogin()),
+        _button("Login", _onClikLogin),
       ],
     );
   }
