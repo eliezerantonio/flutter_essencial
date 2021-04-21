@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:projecto_carros/widgets/app_button.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -61,20 +62,8 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(
           height: 20,
         ),
-        _button("Login", _onClikLogin),
+        AppButton(text: "Login", onPressed: _onClikLogin),
       ],
-    );
-  }
-
-  Container _button(String text, Function onPressed) {
-    return Container(
-      height: 46,
-      child: RaisedButton(
-        color: Colors.blue,
-        textColor: Colors.white,
-        onPressed: onPressed,
-        child: Text(text),
-      ),
     );
   }
 
