@@ -1,4 +1,6 @@
 import 'package:basico_e_widgets/models/dog.dart';
+import 'package:basico_e_widgets/screens/dog_screen.dart';
+import 'package:basico_e_widgets/utils/nav.dart';
 import 'package:flutter/material.dart';
 
 class HelloListView extends StatefulWidget {
@@ -13,7 +15,7 @@ class _HelloListViewState extends State<HelloListView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hello ListView"),
+        title: Text("ListView"),
         actions: [
           IconButton(
             icon: Icon(Icons.list),
@@ -68,30 +70,39 @@ class _HelloListViewState extends State<HelloListView> {
     }
   }
 
-  Stack _itemView(List<Dog> dogs, int index) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        _img(dogs[index].foto),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: Container(
-            margin: EdgeInsets.all(20),
-            padding: EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.6),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Text(
-              dogs[index].nome,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 32,
+  Widget _itemView(List<Dog> dogs, int index) {
+    return GestureDetector(
+      onTap: () {
+        push(
+            context,
+            DogScreen(
+              dog: dogs[index],
+            ));
+      },
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          _img(dogs[index].foto),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Container(
+              margin: EdgeInsets.all(20),
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.6),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Text(
+                dogs[index].nome,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 32,
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
