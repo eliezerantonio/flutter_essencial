@@ -98,8 +98,8 @@ class _LoginScreenState extends State<LoginScreen> {
     if (value.trim().isEmpty) {
       return "Digite o login";
     }
-    if (value.length < 4) {
-      return "O login precisa ter 4 digitos";
+    if (value.length < 3) {
+      return "O login precisa ter 3 digitos";
     }
     return null;
   }
@@ -110,8 +110,8 @@ class _LoginScreenState extends State<LoginScreen> {
     if (value.trim().isEmpty) {
       return "Digite a Senha";
     }
-    if (value.length < 4) {
-      return "A senha precisa ter 4 digitos";
+    if (value.length < 3) {
+      return "A senha precisa ter 3 digitos";
     }
     return null;
   }
