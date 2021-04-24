@@ -15,7 +15,7 @@ class Usuario {
             : null;
 
   @override
-  String toString() {
+  String toString() { 
     return "Usuario(login: $login, nome: $nome, email: $email, token: $token, roles: $roles)";
   }
 }
