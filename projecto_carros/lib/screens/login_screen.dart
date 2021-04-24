@@ -92,8 +92,12 @@ class _LoginScreenState extends State<LoginScreen> {
     if (!formOk) {
       return;
     }
+
     String login = _controllerLogin.text;
     String senha = _controllerSenha.text;
+    setState(() {
+      _showProgress = true;
+    });
     ApiResponse apiResponse = await LoginApi.login(login, senha);
 
     if (apiResponse.ok) {
@@ -103,6 +107,9 @@ class _LoginScreenState extends State<LoginScreen> {
     } else {
       messenger(context, apiResponse.msg);
     }
+    setState(() {
+      _showProgress = false;
+    });
   }
 
   String _validatorLogin(
