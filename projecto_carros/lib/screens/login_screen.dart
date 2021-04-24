@@ -1,9 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:projecto_carros/helpers/api_response.dart';
+import 'package:projecto_carros/helpers/scaffold_messenger.dart';
+import 'package:projecto_carros/models/login_api.dart';
+import 'package:projecto_carros/models/usuario.dart';
 import 'package:projecto_carros/screens/home_screen.dart';
 import 'package:projecto_carros/widgets/app_button.dart';
 import 'package:projecto_carros/widgets/app_text.dart';
+import 'package:projecto_carros/helpers/nav.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -18,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
 
   final _focusSenha = FocusNode();
+  bool _showProgress = false;
 
   @override
   Widget build(BuildContext context) {
@@ -67,20 +73,43 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(
           height: 20,
         ),
-        AppButton(text: "Login", onPressed: _onClikLogin),
+        _showProgress
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : AppButton(
+                text: "Login",
+                onPressed: _onClikLogin,
+              
+              ),
       ],
     );
   }
 
-  _onClikLogin() {
+  _onClikLogin() async {
     bool formOk = _formKey.currentState.validate();
 
     if (!formOk) {
       return;
     }
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => HomeScreen(),
-    ));
+
+    String login = _controllerLogin.text;
+    String senha = _controllerSenha.text;
+    setState(() {
+      _showProgress = true;
+    });
+    ApiResponse apiResponse = await LoginApi.login(login, senha);
+
+    if (apiResponse.ok) {
+      Usuario user = apiResponse.result;
+      print(user);
+      push(context, HomeScreen());
+    } else {
+      messenger(context, apiResponse.msg);
+    }
+    setState(() {
+      _showProgress = false;
+    });
   }
 
   String _validatorLogin(
@@ -89,8 +118,8 @@ class _LoginScreenState extends State<LoginScreen> {
     if (value.trim().isEmpty) {
       return "Digite o login";
     }
-    if (value.length < 4) {
-      return "O login precisa ter 4 digitos";
+    if (value.length < 3) {
+      return "O login precisa ter 3 digitos";
     }
     return null;
   }
@@ -101,8 +130,8 @@ class _LoginScreenState extends State<LoginScreen> {
     if (value.trim().isEmpty) {
       return "Digite a Senha";
     }
-    if (value.length < 4) {
-      return "A senha precisa ter 4 digitos";
+    if (value.length < 3) {
+      return "A senha precisa ter 3 digitos";
     }
     return null;
   }
