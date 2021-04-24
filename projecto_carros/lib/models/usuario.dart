@@ -9,7 +9,10 @@ class Usuario {
       : this.nome = map["nome"],
         this.email = map["email"],
         this.token = map["token"],
-        this.login = map["login"];
+        this.login = map["login"],
+        this.roles = map["roles"] != null
+            ? map["roles"].map<String>((role) => role.toString()).toList()
+            : null;
 
   @override
   String toString() {
