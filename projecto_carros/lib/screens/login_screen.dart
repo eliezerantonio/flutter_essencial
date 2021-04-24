@@ -23,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
 
   final _focusSenha = FocusNode();
+  bool _showProgress = false;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +73,15 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(
           height: 20,
         ),
-        AppButton(text: "Login", onPressed: _onClikLogin),
+        _showProgress
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : AppButton(
+                text: "Login",
+                onPressed: _onClikLogin,
+                showProgress: _showProgress,
+              ),
       ],
     );
   }
