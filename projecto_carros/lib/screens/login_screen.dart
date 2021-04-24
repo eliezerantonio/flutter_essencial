@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:projecto_carros/models/login_api.dart';
 import 'package:projecto_carros/screens/home_screen.dart';
 import 'package:projecto_carros/widgets/app_button.dart';
 import 'package:projecto_carros/widgets/app_text.dart';
@@ -72,15 +73,23 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  _onClikLogin() {
+  _onClikLogin() async {
     bool formOk = _formKey.currentState.validate();
 
     if (!formOk) {
       return;
     }
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => HomeScreen(),
-    ));
+    String login = _controllerLogin.text;
+    String senha = _controllerSenha.text;
+    bool ok = await LoginApi.login(login, senha);
+
+    if (ok) {
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => HomeScreen(),
+      ));
+    } else {
+      print("Login incorreto");
+    }
   }
 
   String _validatorLogin(
