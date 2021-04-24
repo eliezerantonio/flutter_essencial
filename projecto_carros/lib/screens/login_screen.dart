@@ -1,11 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:projecto_carros/helpers/api_response.dart';
+import 'package:projecto_carros/helpers/scaffold_messenger.dart';
 import 'package:projecto_carros/models/login_api.dart';
 import 'package:projecto_carros/models/usuario.dart';
 import 'package:projecto_carros/screens/home_screen.dart';
 import 'package:projecto_carros/widgets/app_button.dart';
 import 'package:projecto_carros/widgets/app_text.dart';
+import 'package:projecto_carros/helpers/nav.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -82,14 +85,14 @@ class _LoginScreenState extends State<LoginScreen> {
     }
     String login = _controllerLogin.text;
     String senha = _controllerSenha.text;
-    Usuario user = await LoginApi.login(login, senha);
+    ApiResponse apiResponse = await LoginApi.login(login, senha);
 
-    if (user!=null) {
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => HomeScreen(),
-      ));
+    if (apiResponse.ok) {
+      Usuario user = apiResponse.result;
+      print(user);
+      push(context, HomeScreen());
     } else {
-      print("Login incorreto");
+      messenger(context, apiResponse.msg);
     }
   }
 
