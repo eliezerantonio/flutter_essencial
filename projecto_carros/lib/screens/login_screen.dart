@@ -103,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (apiResponse.ok) {
       Usuario user = apiResponse.result;
       print(user);
-      push(context, HomeScreen());
+      push(context, HomeScreen(), replace: true);
     } else {
       messenger(context, apiResponse.msg);
     }
