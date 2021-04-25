@@ -3,9 +3,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:projecto_carros/helpers/api_response.dart';
 import 'package:projecto_carros/helpers/scaffold_messenger.dart';
-import 'package:projecto_carros/models/login_api.dart';
-import 'package:projecto_carros/models/usuario.dart';
-import 'package:projecto_carros/screens/home_screen.dart';
+import 'package:projecto_carros/usuario/login_api.dart';
+import 'package:projecto_carros/usuario/usuario.dart';
+import 'package:projecto_carros/carro/home_screen.dart';
 import 'package:projecto_carros/widgets/app_button.dart';
 import 'package:projecto_carros/widgets/app_text.dart';
 import 'package:projecto_carros/helpers/nav.dart';
@@ -80,7 +80,6 @@ class _LoginScreenState extends State<LoginScreen> {
             : AppButton(
                 text: "Login",
                 onPressed: _onClikLogin,
-              
               ),
       ],
     );

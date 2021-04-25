@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:projecto_carros/helpers/api_response.dart';
-import 'package:projecto_carros/models/usuario.dart';
+import 'package:projecto_carros/usuario/usuario.dart';
 
 class LoginApi {
   static Future<ApiResponse<Usuario>> login(String login, String senha) async {
