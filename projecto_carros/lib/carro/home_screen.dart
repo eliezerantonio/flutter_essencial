@@ -19,11 +19,27 @@ class HomeScreen extends StatelessWidget {
   }
 
   _body() {
-    List<Carro> carros = CarrosApi.getCarros();
+    Future<List<Carro>> carros = CarrosApi.getCarros();
+    return FutureBuilder(
+      future: carros,
+      builder: (context, snapshot) {
+        List<Carro> carros = snapshot.data;
+
+        if (!snapshot.hasData) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        return _ListView(carros);
+      },
+    );
+  }
+
+  Padding _ListView(List<Carro> carros) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: ListView.builder(
-        itemCount: carros.length,
+        itemCount: carros != null ? carros.length : 0,
         itemBuilder: (context, index) {
           Carro c = carros[index];
 
@@ -50,20 +66,25 @@ class HomeScreen extends StatelessWidget {
                     "Descricao..",
                     style: TextStyle(fontSize: 17),
                   ),
-                  ButtonTheme.bar(
+                  ButtonBarTheme(
+                    data: ButtonBarTheme.of(context),
                     child: ButtonBar(
-                      children: [
+                      children: <Widget>[
                         FlatButton(
-                          onPressed: () {},
-                          child: Text("DETALHES"),
+                          child: const Text('DETALHES'),
+                          onPressed: () {
+                            /* ... */
+                          },
                         ),
                         FlatButton(
-                          onPressed: () {},
-                          child: Text("SHARE"),
+                          child: const Text('SHARE'),
+                          onPressed: () {
+                            /* ... */
+                          },
                         ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

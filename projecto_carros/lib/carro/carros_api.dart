@@ -1,9 +1,9 @@
 import 'package:projecto_carros/carro/carro.dart';
 
 class CarrosApi {
-  static List<Carro> getCarros() {
+  static Future<List<Carro>> getCarros() async {
     final carros = List<Carro>();
-
+    await Future.delayed(Duration(seconds: 2));
     carros.add(Carro(
       id: 12251,
       nome: "Chevrolet Corvette 78",
