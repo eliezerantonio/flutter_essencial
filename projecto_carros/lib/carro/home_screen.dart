@@ -24,18 +24,26 @@ class HomeScreen extends StatelessWidget {
       future: carros,
       builder: (context, snapshot) {
         List<Carro> carros = snapshot.data;
+        if (snapshot.hasError) {
+          return Center(
+            child: Text(
+              "Impossivel buscar carros",
+              style: TextStyle(color: Colors.red, fontSize: 22),
+            ),
+          );
+        }
 
         if (!snapshot.hasData) {
           return Center(
             child: CircularProgressIndicator(),
           );
         }
-        return _ListView(carros);
+        return _listView(carros);
       },
     );
   }
 
-  Padding _ListView(List<Carro> carros) {
+  Padding _listView(List<Carro> carros) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: ListView.builder(
@@ -52,7 +60,8 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   Center(
                     child: Image.network(
-                      c.urlFoto,
+                      c.urlFoto ??
+                          "https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Chevrolet_Impala_Coupe.png",
                       width: 250,
                     ),
                   ),
