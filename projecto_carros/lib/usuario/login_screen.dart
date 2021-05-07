@@ -26,6 +26,19 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _showProgress = false;
 
   @override
+  void initState() {
+    super.initState();
+
+    Future<Usuario> future = Usuario.get();
+
+    future.then((usuario) {
+      if (usuario != null) {
+        push(context, HomeScreen(), replace: true);
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
