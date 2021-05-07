@@ -12,7 +12,7 @@ class CarrosListView extends StatelessWidget {
   }
 
   _body() {
-    Future<List<Carro>> carros = CarrosApi.getCarros();
+    Future<List<Carro>> carros = CarrosApi.getCarros(TipoCarro.esportivos);
     return FutureBuilder(
       future: carros,
       builder: (context, snapshot) {
