@@ -10,7 +10,7 @@ class CarrosApi {
     var url =
         'https://carros-springboot.herokuapp.com/api/v1/carros/tipo/$tipo';
 
-         
+    print("GET $url");
     var response = await http.get(url);
     String json = response.body;
 

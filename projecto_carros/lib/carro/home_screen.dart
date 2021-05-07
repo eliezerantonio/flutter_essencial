@@ -5,7 +5,6 @@ import 'package:projecto_carros/widgets/drawer_list.dart';
 
 import 'carro.dart';
 
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key key}) : super(key: key);
 
@@ -27,9 +26,9 @@ class HomeScreen extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              CarrosListView(),
-              CarrosListView(),
-              CarrosListView(),
+              CarrosListView(TipoCarro.classicos),
+              CarrosListView(TipoCarro.esportivos),
+              CarrosListView(TipoCarro.luxo),
             ],
           )),
     );

@@ -4,6 +4,8 @@ import 'carro.dart';
 import 'carros_api.dart';
 
 class CarrosListView extends StatelessWidget {
+  CarrosListView(this.tipoCarro);
+  TipoCarro tipoCarro;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +14,7 @@ class CarrosListView extends StatelessWidget {
   }
 
   _body() {
-    Future<List<Carro>> carros = CarrosApi.getCarros(TipoCarro.esportivos);
+    Future<List<Carro>> carros = CarrosApi.getCarros(tipoCarro);
     return FutureBuilder(
       future: carros,
       builder: (context, snapshot) {
