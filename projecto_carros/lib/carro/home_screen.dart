@@ -20,13 +20,15 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
+    _initTabs();
+  }
+
+  _initTabs() async {
     _tabController = TabController(length: 3, vsync: this);
 
-    Future<int> future = Prefs.getInt("tabIdx");
+    int tabIdx = await Prefs.getInt("tabIdx");
 
-    future.then((tabIdx) {
-      _tabController.index = tabIdx;
-    });
+    _tabController.index = tabIdx;
 
     _tabController.addListener(() {
       Prefs.setInt("tabIdx", _tabController.index);
