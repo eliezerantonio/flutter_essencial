@@ -10,12 +10,27 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: DrawerList(),
-      appBar: AppBar(
-        title: Text("Carros"),
-      ),
-      body: CarrosListView(),
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+          drawer: DrawerList(),
+          appBar: AppBar(
+            title: Text("Carros"),
+            bottom: TabBar(
+              tabs: [
+                Tab(text: 'Classicos'),
+                Tab(text: 'Exportivos'),
+                Tab(text: 'Luxo'),
+              ],
+            ),
+          ),
+          body: TabBarView(
+            children: [
+              CarrosListView(),
+              CarrosListView(),
+              CarrosListView(),
+            ],
+          )),
     );
   }
 }
