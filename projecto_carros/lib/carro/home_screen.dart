@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: DrawerList(),
+    
         appBar: AppBar(
           title: Text("Carros"),
           bottom: TabBar(
@@ -64,6 +64,9 @@ class _HomeScreenState extends State<HomeScreen>
             CarrosListView(TipoCarro.esportivos),
             CarrosListView(TipoCarro.luxo),
           ],
-        ));
+        ),
+            drawer: DrawerList(),
+        
+        );
   }
 }

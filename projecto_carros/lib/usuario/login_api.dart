@@ -18,15 +18,14 @@ class LoginApi {
 
       String s = json.encode(params);
       var response = await http.post(url, body: s, headers: headers);
-      print(response.body);
       Map mapResponse = json.decode(response.body);
       if (response.statusCode == 200) {
         final user = Usuario.fromJson(mapResponse);
         user.save();
-        
-        Usuario user2 =  await Usuario.get();
 
-        print(user2);
+        Usuario user2 = await Usuario.get();
+
+      
         return ApiResponse.ok(user);
       }
       return ApiResponse.error(mapResponse["error"]);
