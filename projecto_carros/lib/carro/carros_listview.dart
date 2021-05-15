@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projecto_carros/carro/carro_screen.dart';
+import 'package:projecto_carros/helpers/nav.dart';
 
 import 'carro.dart';
 import 'carros_api.dart';
@@ -13,7 +15,6 @@ class CarrosListView extends StatefulWidget {
 
 class _CarrosListViewState extends State<CarrosListView>
     with AutomaticKeepAliveClientMixin<CarrosListView> {
-      
   @override
   bool get wantKeepAlive => true;
 
@@ -87,9 +88,7 @@ class _CarrosListViewState extends State<CarrosListView>
                       children: <Widget>[
                         FlatButton(
                           child: const Text('DETALHES'),
-                          onPressed: () {
-                            /* ... */
-                          },
+                          onPressed: () => _onClickCarro(c),
                         ),
                         FlatButton(
                           child: const Text('SHARE'),
@@ -105,6 +104,15 @@ class _CarrosListViewState extends State<CarrosListView>
             ),
           );
         },
+      ),
+    );
+  }
+
+  _onClickCarro(Carro c) {
+    push(
+      context,
+      CarroScreen(
+        carro: c,
       ),
     );
   }
