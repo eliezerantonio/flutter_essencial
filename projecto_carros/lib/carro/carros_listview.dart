@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:projecto_carros/carro/carro_screen.dart';
+import 'package:projecto_carros/carro/carros_bloc.dart';
 import 'package:projecto_carros/helpers/nav.dart';
 
 import 'carro.dart';
@@ -19,31 +20,29 @@ class _CarrosListViewState extends State<CarrosListView>
     with AutomaticKeepAliveClientMixin<CarrosListView> {
   List<Carro> carros;
 
-  final _streamController = StreamController<List<Carro>>();
+  TipoCarro get tipo => widget.tipoCarro;
+
+  final _bloc = CarrosBloc();
+
   @override
   bool get wantKeepAlive => true;
+
   @override
   void dispose() {
     super.dispose();
-    _streamController.close();
+    _bloc.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-    _loadData();
-  }
-
-  _loadData() async {
-    List<Carro> carros = await CarrosApi.getCarros(widget.tipoCarro);
-
-    _streamController.add(carros);
+    _bloc.fetch(tipo);
   }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: _streamController.stream,
+      stream: _bloc.stream,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Center(
