@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:projecto_carros/carro/carro_screen.dart';
 import 'package:projecto_carros/helpers/nav.dart';
@@ -17,6 +19,7 @@ class _CarrosListViewState extends State<CarrosListView>
     with AutomaticKeepAliveClientMixin<CarrosListView> {
   List<Carro> carros;
 
+  final _streamController = StreamController<List<Carro>>();
   @override
   bool get wantKeepAlive => true;
   @override
@@ -25,21 +28,35 @@ class _CarrosListViewState extends State<CarrosListView>
     _loadData();
   }
 
-  void _loadData() async {
+  _loadData() async {
     List<Carro> carros = await CarrosApi.getCarros(widget.tipoCarro);
-    setState(() {
-      this.carros = carros;
-    });
+
+    _streamController.add(carros);
   }
 
   @override
   Widget build(BuildContext context) {
-    if (carros == null) {
-      return Center(
-        child: CircularProgressIndicator(),
-      );
-    }
-    return _listView(carros);
+    return StreamBuilder(
+      stream: _streamController.stream,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Center(
+            child: Text(
+              "Impossivel buscar carros",
+              style: TextStyle(color: Colors.red, fontSize: 22),
+            ),
+          );
+        }
+        if (!snapshot.hasData) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        List<Carro> carros = snapshot.data;
+
+        return _listView(carros);
+      },
+    );
   }
 
   Padding _listView(List<Carro> carros) {
