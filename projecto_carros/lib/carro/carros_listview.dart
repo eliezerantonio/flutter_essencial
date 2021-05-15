@@ -23,6 +23,12 @@ class _CarrosListViewState extends State<CarrosListView>
   @override
   bool get wantKeepAlive => true;
   @override
+  void dispose() {
+    super.dispose();
+    _streamController.close();
+  }
+
+  @override
   void initState() {
     super.initState();
     _loadData();
