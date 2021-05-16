@@ -1,4 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:projecto_carros/carro/carro_screen.dart';
+import 'package:projecto_carros/carro/carros_bloc.dart';
+import 'package:projecto_carros/helpers/nav.dart';
+import 'package:projecto_carros/widgets/text_error.dart';
 
 import 'carro.dart';
 import 'carros_api.dart';
@@ -13,37 +19,44 @@ class CarrosListView extends StatefulWidget {
 
 class _CarrosListViewState extends State<CarrosListView>
     with AutomaticKeepAliveClientMixin<CarrosListView> {
-      
+  List<Carro> carros;
+
+  TipoCarro get tipo => widget.tipoCarro;
+
+  final _bloc = CarrosBloc();
+
   @override
   bool get wantKeepAlive => true;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: _body(),
-    );
+  void dispose() {
+    super.dispose();
+    _bloc.dispose();
   }
 
-  _body() {
-    Future<List<Carro>> carros = CarrosApi.getCarros(widget.tipoCarro);
-    return FutureBuilder(
-      future: carros,
+  @override
+  void initState() {
+    super.initState();
+    _bloc.fetch(tipo);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: _bloc.stream,
       builder: (context, snapshot) {
-        List<Carro> carros = snapshot.data;
         if (snapshot.hasError) {
-          return Center(
-            child: Text(
-              "Impossivel buscar carros",
-              style: TextStyle(color: Colors.red, fontSize: 22),
-            ),
+          return TextError(
+            msg: "Impossivel buscar carros",
           );
         }
-
         if (!snapshot.hasData) {
           return Center(
             child: CircularProgressIndicator(),
           );
         }
+        List<Carro> carros = snapshot.data;
+
         return _listView(carros);
       },
     );
@@ -87,9 +100,7 @@ class _CarrosListViewState extends State<CarrosListView>
                       children: <Widget>[
                         FlatButton(
                           child: const Text('DETALHES'),
-                          onPressed: () {
-                            /* ... */
-                          },
+                          onPressed: () => _onClickCarro(c),
                         ),
                         FlatButton(
                           child: const Text('SHARE'),
@@ -105,6 +116,15 @@ class _CarrosListViewState extends State<CarrosListView>
             ),
           );
         },
+      ),
+    );
+  }
+
+  _onClickCarro(Carro c) {
+    push(
+      context,
+      CarroScreen(
+        carro: c,
       ),
     );
   }

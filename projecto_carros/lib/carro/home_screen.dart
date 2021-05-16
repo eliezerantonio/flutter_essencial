@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projecto_carros/carro/carros_api.dart';
 import 'package:projecto_carros/carro/carros_listview.dart';
 import 'package:projecto_carros/helpers/prefs.dart';
+import 'package:projecto_carros/widgets/drawer_custom.dart';
 import 'package:projecto_carros/widgets/drawer_list.dart';
 
 import 'carro.dart';
@@ -45,28 +46,26 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    
-        appBar: AppBar(
-          title: Text("Carros"),
-          bottom: TabBar(
-            controller: _tabController,
-            tabs: [
-              Tab(text: 'Classicos'),
-              Tab(text: 'Exportivos'),
-              Tab(text: 'Luxo'),
-            ],
-          ),
-        ),
-        body: TabBarView(
+      appBar: AppBar(
+        title: Text("Carros"),
+        bottom: TabBar(
           controller: _tabController,
-          children: [
-            CarrosListView(TipoCarro.classicos),
-            CarrosListView(TipoCarro.esportivos),
-            CarrosListView(TipoCarro.luxo),
+          tabs: [
+            Tab(text: 'Classicos'),
+            Tab(text: 'Exportivos'),
+            Tab(text: 'Luxo'),
           ],
         ),
-            drawer: DrawerList(),
-        
-        );
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          CarrosListView(TipoCarro.classicos),
+          CarrosListView(TipoCarro.esportivos),
+          CarrosListView(TipoCarro.luxo),
+        ],
+      ),
+      drawer: DrawerCustom(),
+    );
   }
 }
