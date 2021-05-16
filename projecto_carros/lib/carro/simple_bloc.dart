@@ -16,3 +16,5 @@ class SimpleBloc<T> {
     _controller.close();
   }
 }
+
+class BooleanBloc extends SimpleBloc<bool> {}
