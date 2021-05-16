@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:mobx/mobx.dart';
 import 'package:projecto_carros/carro/carros_api.dart';
-import 'package:projecto_carros/carro/simple_bloc.dart';
+
 
 import 'carro.dart';
 
