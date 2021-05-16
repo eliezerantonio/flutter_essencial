@@ -20,6 +20,7 @@ abstract class CarrosModelBase with Store {
   @action //nos metodos que vao alterar a interface
   fetch(TipoCarro tipoCarro) async {
     try {
+      error = null;
       this.carros = await CarrosApi.getCarros(tipoCarro);
     } catch (e) {
       error = e;
