@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:projecto_carros/carro/carro_screen.dart';
 import 'package:projecto_carros/carro/carros_bloc.dart';
 import 'package:projecto_carros/helpers/nav.dart';
+import 'package:projecto_carros/widgets/text_error.dart';
 
 import 'carro.dart';
 import 'carros_api.dart';
@@ -45,11 +46,8 @@ class _CarrosListViewState extends State<CarrosListView>
       stream: _bloc.stream,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Center(
-            child: Text(
-              "Impossivel buscar carros",
-              style: TextStyle(color: Colors.red, fontSize: 22),
-            ),
+          return TextError(
+            msg: "Impossivel buscar carros",
           );
         }
         if (!snapshot.hasData) {
