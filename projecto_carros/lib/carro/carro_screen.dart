@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projecto_carros/carro/carro.dart';
+import 'package:projecto_carros/helpers/text.dart';
 
 class CarroScreen extends StatelessWidget {
   const CarroScreen({Key key, this.carro}) : super(key: key);
@@ -56,19 +57,8 @@ class CarroScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    carro.nome,
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    carro.tipo,
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
+                  text(carro.nome, fontSize: 20, bold: true),
+                  text(carro.tipo, fontSize: 16),
                 ],
               ),
               Row(
