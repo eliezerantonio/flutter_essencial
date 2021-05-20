@@ -46,7 +46,50 @@ class CarroScreen extends StatelessWidget {
   Container _body() {
     return Container(
       padding: EdgeInsets.all(16),
-      child: Image.network(carro.urlFoto),
+      child: ListView(
+        physics: BouncingScrollPhysics(),
+        children: [
+          Image.network(carro.urlFoto),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    carro.nome,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    carro.tipo,
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.favorite),
+                    color: Colors.red,
+                    iconSize: 40,
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.share),
+                    iconSize: 40,
+                    onPressed: () {},
+                  ),
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 
