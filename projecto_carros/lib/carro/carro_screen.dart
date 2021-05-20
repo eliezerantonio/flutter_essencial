@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projecto_carros/carro/carro.dart';
+import 'package:projecto_carros/carro/loripsum_api.dart';
 import 'package:projecto_carros/helpers/text.dart';
 
 class CarroScreen extends StatelessWidget {
@@ -108,11 +109,16 @@ class CarroScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         text(carro.descricao, bold: true),
-        SizedBox(
-          height: 10,
-        ),
-        Text(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Comprehensum, quod cognitum non habet? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Suam denique cuique naturam esse ad vivendum ducem.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Comprehensum, quod cognitum non habet? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Suam denique cuique naturam esse ad vivendum ducem.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Comprehensum, quod cognitum non habet? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Suam denique cuique naturam esse ad vivendum ducem.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Comprehensum, quod cognitum non habet? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Suam denique cuique naturam esse ad vivendum ducem.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Comprehensum, quod cognitum non habet? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Suam denique cuique naturam esse ad vivendum ducem.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Comprehensum, quod cognitum non habet? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Suam denique cuique naturam esse ad vivendum ducem.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Comprehensum, quod cognitum non habet? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Suam denique cuique naturam esse ad vivendum ducem.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Comprehensum, quod cognitum non habet? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Suam denique cuique naturam esse ad vivendum ducem.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Comprehensum, quod cognitum non habet? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Suam denique cuique naturam esse ad vivendum ducem.")
+        SizedBox(height: 10),
+        FutureBuilder(
+          future: LoripsumApu.getLoripsum(),
+          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+            if (!snapshot.hasData) {
+              return Center(child: CircularProgressIndicator());
+            }
+            return text(snapshot.data, fontSize: 16);
+          },
+        )
       ],
     );
   }
