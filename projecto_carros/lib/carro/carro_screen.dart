@@ -51,35 +51,41 @@ class CarroScreen extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         children: [
           Image.network(carro.urlFoto),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  text(carro.nome, fontSize: 20, bold: true),
-                  text(carro.tipo, fontSize: 16),
-                ],
-              ),
-              Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.favorite),
-                    color: Colors.red,
-                    iconSize: 40,
-                    onPressed: () {},
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.share),
-                    iconSize: 40,
-                    onPressed: () {},
-                  ),
-                ],
-              )
-            ],
-          ),
+          _bloco1(),
+          Divider(),
+          _bloco2()
         ],
       ),
+    );
+  }
+
+  Row _bloco1() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            text(carro.nome, fontSize: 20, bold: true),
+            text(carro.tipo, fontSize: 16),
+          ],
+        ),
+        Row(
+          children: [
+            IconButton(
+              icon: Icon(Icons.favorite),
+              color: Colors.red,
+              iconSize: 40,
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: Icon(Icons.share),
+              iconSize: 40,
+              onPressed: () {},
+            ),
+          ],
+        )
+      ],
     );
   }
 
@@ -95,5 +101,19 @@ class CarroScreen extends StatelessWidget {
         print("Share");
         break;
     }
+  }
+
+  Widget _bloco2() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        text(carro.descricao, bold: true),
+        SizedBox(
+          height: 10,
+        ),
+        Text(
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Comprehensum, quod cognitum non habet? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Suam denique cuique naturam esse ad vivendum ducem.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Comprehensum, quod cognitum non habet? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Suam denique cuique naturam esse ad vivendum ducem.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Comprehensum, quod cognitum non habet? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Suam denique cuique naturam esse ad vivendum ducem.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Comprehensum, quod cognitum non habet? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Suam denique cuique naturam esse ad vivendum ducem.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Comprehensum, quod cognitum non habet? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Suam denique cuique naturam esse ad vivendum ducem.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Comprehensum, quod cognitum non habet? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Suam denique cuique naturam esse ad vivendum ducem.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Comprehensum, quod cognitum non habet? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Suam denique cuique naturam esse ad vivendum ducem.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Comprehensum, quod cognitum non habet? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Suam denique cuique naturam esse ad vivendum ducem.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Comprehensum, quod cognitum non habet? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Suam denique cuique naturam esse ad vivendum ducem.")
+      ],
+    );
   }
 }
