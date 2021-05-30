@@ -1,4 +1,3 @@
-class Entity {
-
-  
+abstract class Entity {
+  Map<String, dynamic> toJson();
 }

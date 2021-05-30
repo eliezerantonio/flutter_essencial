@@ -13,9 +13,6 @@ abstract class BaseDAO<T extends Entity> {
 
   T fromJson(Map<String, dynamic> map);
 
-
-
-
   Future<int> save(T entity) async {
     var dbClient = await db;
     var id = await dbClient.insert(tableName, entity.toJson(),
@@ -33,15 +30,6 @@ abstract class BaseDAO<T extends Entity> {
     ;
   }
 
-  Future<List<T>> findAllByTipo(String tipo) async {
-    final dbClient = await db;
-
-    final list =
-        await dbClient.rawQuery('select * from carro where tipo =? ', [tipo]);
-
-    return list.map<T>((json) => fromJson(json)).toList();
-  }
-
   Future<T> findById(int id) async {
     var dbClient = await db;
     final list =
@@ -54,8 +42,8 @@ abstract class BaseDAO<T extends Entity> {
     return null;
   }
 
-  Future<bool> exists(T carro) async {
-    T c = await findById(carro.id);
+  Future<bool> exists(int id) async {
+    T c = await findById(id);
     var exists = c != null;
     return exists;
   }
