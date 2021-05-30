@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projecto_carros/carro/carro_screen.dart';
 import 'package:projecto_carros/carro/carros_api.dart';
 import 'package:projecto_carros/carro/carros_listview.dart';
 import 'package:projecto_carros/helpers/prefs.dart';
@@ -6,6 +7,7 @@ import 'package:projecto_carros/widgets/drawer_custom.dart';
 import 'package:projecto_carros/widgets/drawer_list.dart';
 
 import 'carro.dart';
+import 'carros_Screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -60,9 +62,9 @@ class _HomeScreenState extends State<HomeScreen>
       body: TabBarView(
         controller: _tabController,
         children: [
-          CarrosListView(TipoCarro.classicos),
-          CarrosListView(TipoCarro.esportivos),
-          CarrosListView(TipoCarro.luxo),
+          CarroPage(TipoCarro.classicos),
+          CarroPage(TipoCarro.esportivos),
+          CarroPage(TipoCarro.luxo),
         ],
       ),
       drawer: DrawerCustom(),

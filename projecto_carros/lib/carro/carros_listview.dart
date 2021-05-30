@@ -10,58 +10,12 @@ import 'package:projecto_carros/widgets/text_error.dart';
 import 'carro.dart';
 import 'carros_api.dart';
 
-class CarrosListView extends StatefulWidget {
-  CarrosListView(this.tipoCarro);
-  TipoCarro tipoCarro;
-
-  @override
-  _CarrosListViewState createState() => _CarrosListViewState();
-}
-
-class _CarrosListViewState extends State<CarrosListView>
-    with AutomaticKeepAliveClientMixin<CarrosListView> {
+class CarrosListView extends StatelessWidget {
+  CarrosListView(this.carros);
   List<Carro> carros;
-
-  TipoCarro get tipo => widget.tipoCarro;
-
-  final _model = CarrosModel();
-
-  @override
-  bool get wantKeepAlive => true;
-
-  @override
-  void initState() {
-    super.initState();
-    _model.fetch(tipo);
-  }
-
-  _fetch() {
-    _model.fetch(tipo);
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (_) {
-        List<Carro> carros = _model.carros;
-        if (_model.error != null) {
-          return TextError(
-            msg: "Impossivel buscar carros \n Clique aqui para tentar ",
-            onPressed: _fetch,
-          );
-        }
-        if (carros == null) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-
-        return _listView(carros);
-      },
-    );
-  }
-
-  Padding _listView(List<Carro> carros) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: ListView.builder(
@@ -99,7 +53,7 @@ class _CarrosListViewState extends State<CarrosListView>
                       children: <Widget>[
                         FlatButton(
                           child: const Text('DETALHES'),
-                          onPressed: () => _onClickCarro(c),
+                          onPressed: () => _onClickCarro(c, context),
                         ),
                         FlatButton(
                           child: const Text('SHARE'),
@@ -119,12 +73,10 @@ class _CarrosListViewState extends State<CarrosListView>
     );
   }
 
-  _onClickCarro(Carro c) {
+  _onClickCarro(Carro c, BuildContext context) {
     push(
       context,
-      CarroScreen(
-        carro: c,
-      ),
+      CarroScreen(c),
     );
   }
 }
