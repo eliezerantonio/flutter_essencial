@@ -22,8 +22,6 @@ class CarroPage extends StatefulWidget {
 
 class _CarroPageState extends State<CarroPage>
     with AutomaticKeepAliveClientMixin<CarroPage> {
-  List<Carro> carros;
-
   TipoCarro get tipo => widget.tipoCarro;
 
   final _bloc = CarrosBloc();
@@ -37,7 +35,7 @@ class _CarroPageState extends State<CarroPage>
     _bloc.fetch(tipo);
   }
 
-  _fetch() {
+  _fetch() async {
     _bloc.fetch(tipo);
   }
 
@@ -52,12 +50,12 @@ class _CarroPageState extends State<CarroPage>
             onPressed: _fetch,
           );
         }
-        if (carros == null) {
+        if (!snapshot.hasData) {
           return Center(
             child: CircularProgressIndicator(),
           );
         }
-
+        List<Carro> carros = snapshot.data;
         return RefreshIndicator(
           onRefresh: _onRefresh,
           child: CarrosListView(carros),
