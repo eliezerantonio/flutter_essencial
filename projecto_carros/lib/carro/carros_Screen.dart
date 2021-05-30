@@ -37,8 +37,8 @@ class _CarroPageState extends State<CarroPage>
     _bloc.fetch(tipo);
   }
 
-  _fetch() {
-    _bloc.fetch(tipo);
+  _fetch() async{
+  carros=await  _bloc.fetch(tipo);
   }
 
   @override
