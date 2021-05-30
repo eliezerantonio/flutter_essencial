@@ -19,6 +19,7 @@ class CarrosListView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: ListView.builder(
+        physics: BouncingScrollPhysics(),
         itemCount: carros != null ? carros.length : 0,
         itemBuilder: (context, index) {
           Carro c = carros[index];
