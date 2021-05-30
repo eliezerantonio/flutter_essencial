@@ -4,7 +4,7 @@ import 'package:projecto_carros/carro/loripsum_api.dart';
 import 'package:projecto_carros/helpers/text.dart';
 
 class CarroScreen extends StatelessWidget {
-  const CarroScreen({Key key, this.carro}) : super(key: key);
+  const CarroScreen(this.carro) ;
   final Carro carro;
   @override
   Widget build(BuildContext context) {
