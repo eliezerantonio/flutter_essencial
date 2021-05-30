@@ -1,6 +1,6 @@
 import 'package:projecto_carros/carro/carro.dart';
 import 'package:http/http.dart' as http;
-import 'package:projecto_carros/favoritos/carro_dao.dart';
+import 'package:projecto_carros/favoritos/base_dao.dart';
 import 'dart:convert' as convert;
 
 import 'package:projecto_carros/usuario/usuario.dart';

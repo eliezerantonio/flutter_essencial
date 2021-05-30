@@ -1,4 +1,6 @@
-class Carro {
+import 'package:projecto_carros/favoritos/entity.dart';
+
+class Carro extends Entity {
   int id;
   String nome;
   String tipo;
