@@ -7,7 +7,7 @@ import 'package:projecto_carros/favoritos/favoritos_bloc.dart';
 import 'package:projecto_carros/widgets/text_error.dart';
 
 
-class FavoritoScreen extends StatefulWidget {
+class FavoritoScreen extends  StatefulWidget {
  
 
   @override
