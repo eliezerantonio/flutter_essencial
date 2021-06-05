@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:projecto_carros/carro/carro.dart';
 import 'package:projecto_carros/carro/loripsum_api.dart';
+import 'package:projecto_carros/favoritos/favorito_services.dart';
 import 'package:projecto_carros/helpers/text.dart';
 
 class CarroScreen extends StatelessWidget {
-  const CarroScreen(this.carro) ;
+  const CarroScreen(this.carro);
   final Carro carro;
   @override
   Widget build(BuildContext context) {
@@ -77,7 +78,7 @@ class CarroScreen extends StatelessWidget {
               icon: Icon(Icons.favorite),
               color: Colors.red,
               iconSize: 40,
-              onPressed: () {},
+              onPressed: _onClickFavorito,
             ),
             IconButton(
               icon: Icon(Icons.share),
@@ -121,5 +122,9 @@ class CarroScreen extends StatelessWidget {
         )
       ],
     );
+  }
+
+  void _onClickFavorito() {
+    FavoritoService.favoritar(carro);
   }
 }

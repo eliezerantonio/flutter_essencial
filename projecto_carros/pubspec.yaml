@@ -34,6 +34,7 @@ dependencies:
   mobx: ^0.4.0+1
   flutter_mobx: ^0.3.6 
   sqflite: ^1.1.6+3
+  cached_network_image: ^2.3.2
   
 
 dev_dependencies:
