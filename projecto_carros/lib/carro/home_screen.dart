@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projecto_carros/carro/carro_screen.dart';
 import 'package:projecto_carros/carro/carros_api.dart';
 import 'package:projecto_carros/carro/carros_listview.dart';
+import 'package:projecto_carros/favoritos/favorito_screen.dart';
 import 'package:projecto_carros/helpers/prefs.dart';
 import 'package:projecto_carros/widgets/drawer_custom.dart';
 import 'package:projecto_carros/widgets/drawer_list.dart';
@@ -32,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen>
 
     // Depois cria o TabController
     // No método build na primeira vez ele poderá estar nulo
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
 
     // Agora que temos o TabController e o índice da tab,
     // chama o setState para redesenhar a tela
@@ -56,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen>
             Tab(text: 'Classicos'),
             Tab(text: 'Exportivos'),
             Tab(text: 'Luxo'),
+            Tab(text: 'Favoritos'),
           ],
         ),
       ),
@@ -65,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen>
           CarroPage(TipoCarro.classicos),
           CarroPage(TipoCarro.esportivos),
           CarroPage(TipoCarro.luxo),
+          FavoritoScreen()
         ],
       ),
       drawer: DrawerCustom(),
