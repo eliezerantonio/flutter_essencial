@@ -138,7 +138,7 @@ class _CarroFormPageState extends State<CarroFormPage> {
   _headerFoto() {
     return carro != null
         ? CachedNetworkImage(
-            imageUrl: carro.urlFoto??"",
+            imageUrl: carro.urlFoto??"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Chevrolet_Impala_Coupe.png",
           )
         : Image.asset(
             "assets/images/camera.png",

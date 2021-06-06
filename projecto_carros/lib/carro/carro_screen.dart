@@ -74,7 +74,7 @@ class _CarroScreenState extends State<CarroScreen> {
       child: ListView(
         physics: BouncingScrollPhysics(),
         children: [
-          Image.network(widget.carro.urlFoto??""),
+          Image.network(widget.carro.urlFoto??"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Chevrolet_Impala_Coupe.png"),
           _bloco1(),
           Divider(),
           _bloco2()
