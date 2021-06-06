@@ -8,7 +8,7 @@ import 'usuario/login_screen.dart';
 void main() => runApp(
       MultiProvider(
         providers: [
-          Provider<FavoritosModel>(
+          ChangeNotifierProvider<FavoritosModel>(
             create: (context) => FavoritosModel(),
           )
         ],
