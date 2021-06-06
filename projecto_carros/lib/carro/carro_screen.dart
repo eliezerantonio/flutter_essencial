@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:projecto_carros/carro/carro.dart';
 import 'package:projecto_carros/carro/loripsum_api.dart';
 import 'package:projecto_carros/favoritos/favorito_services.dart';
+import 'package:projecto_carros/helpers/nav.dart';
 import 'package:projecto_carros/helpers/text.dart';
+
+import 'carro_form_page.dart';
 
 class CarroScreen extends StatefulWidget {
   const CarroScreen(this.carro);
@@ -20,12 +23,12 @@ class _CarroScreenState extends State<CarroScreen> {
     super.initState();
 
     FavoritoService.isFavorite(widget.carro).then((favorito) {
-        setState(() {
-      color = favorito ? Colors.red : Colors.grey;
+      setState(() {
+        color = favorito ? Colors.red : Colors.grey;
+      });
     });
-
-    } );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,7 +116,7 @@ class _CarroScreenState extends State<CarroScreen> {
   _onClickPopupMenu(String value) {
     switch (value) {
       case "Editar":
-        print("editar");
+        push(context, CarroFormPage(carro:widget.carro));
         break;
       case "Deletar":
         print("Deletar");
