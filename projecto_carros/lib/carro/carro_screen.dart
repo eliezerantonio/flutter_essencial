@@ -151,7 +151,7 @@ class _CarroScreenState extends State<CarroScreen> {
   }
 
   void _onClickFavorito() async {
-    bool favorito = await FavoritoService.favoritar(widget.carro);
+    bool favorito = await FavoritoService.favoritar(widget.carro, context);
 
     setState(() {
       color = favorito ? Colors.red : Colors.grey;
