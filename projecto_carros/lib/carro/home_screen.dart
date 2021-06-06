@@ -71,6 +71,10 @@ class _HomeScreenState extends State<HomeScreen>
         ],
       ),
       drawer: DrawerCustom(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
