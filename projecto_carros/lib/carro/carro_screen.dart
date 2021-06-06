@@ -14,6 +14,18 @@ class CarroScreen extends StatefulWidget {
 
 class _CarroScreenState extends State<CarroScreen> {
   Color color = Colors.grey;
+
+  @override
+  void initState() {
+    super.initState();
+
+    FavoritoService.isFavorite(widget.carro).then((favorito) {
+        setState(() {
+      color = favorito ? Colors.red : Colors.grey;
+    });
+
+    } );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
