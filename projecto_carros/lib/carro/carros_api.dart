@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:projecto_carros/carro/carro.dart';
 import 'package:projecto_carros/helpers/api_response.dart';
 import 'package:projecto_carros/carro/carro_dao.dart';
@@ -10,14 +12,16 @@ enum TipoCarro { classicos, esportivos, luxo }
 
 class CarrosApi {
   static Future<List<Carro>> getCarros(TipoCarro tipoCarro) async {
-   ;
+    ;
 
     String tipo = tipoCarro.toString().replaceAll("TipoCarro.", "");
     var url =
         'https://carros-springboot.herokuapp.com/api/v2/carros/tipo/$tipo';
 
     print("GET $url");
-    var response = await http.get(url, );
+    var response = await http.get(
+      url,
+    );
     String json = response.body;
 
     List list = convert.json.decode(json);
@@ -28,9 +32,10 @@ class CarrosApi {
     return carros;
   }
 
-  static Future<ApiResponse<bool>> save(Carro c) async {
-  
-
+  static Future<ApiResponse<bool>> save(Carro c, File file) async {
+    if (file != null) {
+      
+    }
     var url = 'https://carros-springboot.herokuapp.com/api/v2/carros';
     if (c.id != null) {
       url += "/${c.id}";
@@ -41,8 +46,14 @@ class CarrosApi {
     String json = c.toJsonC();
 
     var response = await (c.id == null
-        ? http.post(url, body: json, )
-        : http.put(url, body: json, ));
+        ? http.post(
+            url,
+            body: json,
+          )
+        : http.put(
+            url,
+            body: json,
+          ));
 
     print("reponse status: ${response.statusCode} ");
     print("response body: ${response.body}");
@@ -64,12 +75,13 @@ class CarrosApi {
   }
 
   static Future<ApiResponse<bool>> delete(Carro c) async {
-   
     var url = 'https://carros-springboot.herokuapp.com/api/v2/carros/${c.id}';
 
     print("POST > $url");
 
-    var response = await http.delete(url,);
+    var response = await http.delete(
+      url,
+    );
 
     print("reponse status: ${response.statusCode}");
     print("response body: ${response.body}");

@@ -237,7 +237,7 @@ class _CarroFormPageState extends State<CarroFormPage> {
 
     print("Salvar o carro $c");
 
-    ApiResponse<bool> response = await CarrosApi.save(c);
+    ApiResponse<bool> response = await CarrosApi.save(c, imageFile);
 
     if (response.ok) {
       messenger(context, "carro salvado com sucesso");
