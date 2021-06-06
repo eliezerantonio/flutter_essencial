@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:projecto_carros/carro/carro_form_page.dart';
-import 'package:projecto_carros/carro/carro_screen.dart';
 import 'package:projecto_carros/carro/carros_api.dart';
-import 'package:projecto_carros/carro/carros_listview.dart';
 import 'package:projecto_carros/favoritos/favorito_screen.dart';
 import 'package:projecto_carros/helpers/nav.dart';
 import 'package:projecto_carros/helpers/prefs.dart';
 import 'package:projecto_carros/widgets/drawer_custom.dart';
-import 'package:projecto_carros/widgets/drawer_list.dart';
 
-import 'carro.dart';
 import 'carros_Screen.dart';
 
 class HomeScreen extends StatefulWidget {

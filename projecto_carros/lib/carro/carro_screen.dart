@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:projecto_carros/carro/carro.dart';
+import 'package:projecto_carros/carro/carros_api.dart';
 import 'package:projecto_carros/carro/loripsum_api.dart';
 import 'package:projecto_carros/favoritos/favorito_services.dart';
+import 'package:projecto_carros/helpers/api_response.dart';
 import 'package:projecto_carros/helpers/nav.dart';
+import 'package:projecto_carros/helpers/scaffold_messenger.dart';
 import 'package:projecto_carros/helpers/text.dart';
 
 import 'carro_form_page.dart';
@@ -74,7 +77,8 @@ class _CarroScreenState extends State<CarroScreen> {
       child: ListView(
         physics: BouncingScrollPhysics(),
         children: [
-          Image.network(widget.carro.urlFoto),
+          Image.network(widget.carro.urlFoto ??
+              "https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Chevrolet_Impala_Coupe.png"),
           _bloco1(),
           Divider(),
           _bloco2()
@@ -116,10 +120,10 @@ class _CarroScreenState extends State<CarroScreen> {
   _onClickPopupMenu(String value) {
     switch (value) {
       case "Editar":
-        push(context, CarroFormPage(carro:widget.carro));
+        push(context, CarroFormPage(carro: widget.carro));
         break;
       case "Deletar":
-        print("Deletar");
+        deletar();
         break;
       case "Share":
         print("Share");
@@ -152,5 +156,14 @@ class _CarroScreenState extends State<CarroScreen> {
     setState(() {
       color = favorito ? Colors.red : Colors.grey;
     });
+  }
+
+  void deletar() async {
+    ApiResponse<bool> response = await CarrosApi.delete(widget.carro);
+    if (response.ok) {
+      messenger(context, "Carro deletado com sucesso");
+    } else {
+      messenger(context, response.msg);
+    }
   }
 }
