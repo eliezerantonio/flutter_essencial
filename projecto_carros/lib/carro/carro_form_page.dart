@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:projecto_carros/carro/carros_api.dart';
 import 'package:projecto_carros/helpers/api_response.dart';
 import 'package:projecto_carros/helpers/scaffold_messenger.dart';
@@ -24,7 +27,7 @@ class _CarroFormPageState extends State<CarroFormPage> {
   final tTipo = TextEditingController();
 
   int _radioIndex = 0;
-
+  File imageFile;
   var _showProgress = false;
 
   Carro get carro => widget.carro;
@@ -136,14 +139,20 @@ class _CarroFormPageState extends State<CarroFormPage> {
   }
 
   _headerFoto() {
-    return carro != null
-        ? CachedNetworkImage(
-            imageUrl: carro.urlFoto??"https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Chevrolet_Impala_Coupe.png",
-          )
-        : Image.asset(
-            "assets/images/camera.png",
-            height: 150,
-          );
+    return InkWell(
+      onTap: _onClickFoto,
+      child: imageFile != null
+          ? Image.file(imageFile, height: 150,)
+          : carro != null
+              ? CachedNetworkImage(
+                  imageUrl: carro.urlFoto ??
+                      "https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Chevrolet_Impala_Coupe.png",
+                )
+              : Image.asset(
+                  "assets/images/camera.png",
+                  height: 150,
+                ),
+    );
   }
 
   _radioTipo() {
@@ -228,7 +237,7 @@ class _CarroFormPageState extends State<CarroFormPage> {
 
     print("Salvar o carro $c");
 
-    ApiResponse<bool> response = await CarrosApi.save(c);
+    ApiResponse<bool> response = await CarrosApi.save(c, imageFile);
 
     if (response.ok) {
       messenger(context, "carro salvado com sucesso");
@@ -244,5 +253,15 @@ class _CarroFormPageState extends State<CarroFormPage> {
     });
 
     print("Fim.");
+  }
+
+  void _onClickFoto() async {
+    final filePicked = await ImagePicker().getImage(source: ImageSource.camera);
+
+    if (filePicked != null) {
+      setState(() {
+        this.imageFile = File(filePicked.path);
+      });
+    }
   }
 }
