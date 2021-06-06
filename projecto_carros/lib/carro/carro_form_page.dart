@@ -138,7 +138,7 @@ class _CarroFormPageState extends State<CarroFormPage> {
   _headerFoto() {
     return carro != null
         ? CachedNetworkImage(
-            imageUrl: carro.urlFoto,
+            imageUrl: carro.urlFoto??"",
           )
         : Image.asset(
             "assets/images/camera.png",

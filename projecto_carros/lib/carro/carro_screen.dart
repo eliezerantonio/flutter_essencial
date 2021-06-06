@@ -74,7 +74,7 @@ class _CarroScreenState extends State<CarroScreen> {
       child: ListView(
         physics: BouncingScrollPhysics(),
         children: [
-          Image.network(widget.carro.urlFoto),
+          Image.network(widget.carro.urlFoto??""),
           _bloco1(),
           Divider(),
           _bloco2()
