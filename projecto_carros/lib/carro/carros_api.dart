@@ -35,13 +35,14 @@ class CarrosApi {
 
   static Future<ApiResponse<bool>> save(Carro c) async {
     Usuario user = await Usuario.get();
-    Map<String, dynamic> headers = {
+
+    print(" token ${user.token}");
+    Map<String, String> headers = {
       "Content-type": "application/json",
-      "Authorization": "Bearer ${user.toJson}"
+      "Authorization": "Bearer ${user.token}",
     };
 
-      var url =
-        'https://carros-springboot.herokuapp.com/api/v2/carros/';
+    var url = 'https://carros-springboot.herokuapp.com/api/v2/carros/';
 
     print("POST > $url");
 
