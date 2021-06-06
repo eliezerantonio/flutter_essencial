@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:projecto_carros/carro/carro.dart';
-import 'package:projecto_carros/carro/carros_listview.dart';
 import 'package:projecto_carros/favoritos/favorito_services.dart';
 
 
