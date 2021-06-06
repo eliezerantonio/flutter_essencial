@@ -73,4 +73,33 @@ class CarrosApi {
     Map mapResponse = convert.json.decode(response.body);
     return ApiResponse.error(mapResponse["error"]);
   }
+
+  static Future<ApiResponse<bool>> delete(Carro c) async {
+    Usuario user = await Usuario.get();
+
+    print(" token ${user.token}");
+    Map<String, String> headers = {
+      "Content-type": "application/json",
+      "Authorization": "Bearer ${user.token}",
+    };
+
+    var url = 'https://carros-springboot.herokuapp.com/api/v2/carros/${c.id}';
+
+    print("POST > $url");
+
+   
+    var response = await
+         http.delete(url,  headers: headers);
+
+    print("reponse status: ${response.statusCode} ");
+    print("response body: ${response.body}");
+
+    if (response.statusCode == 201 || response.statusCode == 200) {
+  
+
+      return ApiResponse.ok(true);
+    }
+  
+    return ApiResponse.error("Nao foi possivel apagar o carro");
+  }
 }
