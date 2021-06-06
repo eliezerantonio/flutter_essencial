@@ -7,18 +7,10 @@ class CarrosDAO extends BaseDAO<Carro> {
 
   @override
   Carro fromJson(Map<String, dynamic> map) {
-    // TODO: implement fromJson
-    throw UnimplementedError();
+    return Carro.fromJson(map);
   }
 
- Future<List<Carro>> findAllByTipo(String tipo) async {
-    final dbClient = await db;
-
-    final list =
-        await dbClient.rawQuery('select * from carro where tipo =? ', [tipo]);
-
-    return list.map<Carro>((json) => fromJson(json)).toList();
+  Future<List<Carro>> findAllByTipo(String tipo)  {
+    return query('select * from carro where tipo =? ', [tipo]);
   }
-
-
 }

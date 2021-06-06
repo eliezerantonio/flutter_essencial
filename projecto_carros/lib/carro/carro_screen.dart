@@ -4,14 +4,33 @@ import 'package:projecto_carros/carro/loripsum_api.dart';
 import 'package:projecto_carros/favoritos/favorito_services.dart';
 import 'package:projecto_carros/helpers/text.dart';
 
-class CarroScreen extends StatelessWidget {
+class CarroScreen extends StatefulWidget {
   const CarroScreen(this.carro);
   final Carro carro;
+
+  @override
+  _CarroScreenState createState() => _CarroScreenState();
+}
+
+class _CarroScreenState extends State<CarroScreen> {
+  Color color = Colors.grey;
+
+  @override
+  void initState() {
+    super.initState();
+
+    FavoritoService.isFavorite(widget.carro).then((favorito) {
+        setState(() {
+      color = favorito ? Colors.red : Colors.grey;
+    });
+
+    } );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(carro.nome),
+        title: Text(widget.carro.nome),
         actions: [
           IconButton(
             icon: Icon(Icons.place),
@@ -52,7 +71,7 @@ class CarroScreen extends StatelessWidget {
       child: ListView(
         physics: BouncingScrollPhysics(),
         children: [
-          Image.network(carro.urlFoto),
+          Image.network(widget.carro.urlFoto),
           _bloco1(),
           Divider(),
           _bloco2()
@@ -68,15 +87,15 @@ class CarroScreen extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            text(carro.nome, fontSize: 20, bold: true),
-            text(carro.tipo, fontSize: 16),
+            text(widget.carro.nome, fontSize: 20, bold: true),
+            text(widget.carro.tipo, fontSize: 16),
           ],
         ),
         Row(
           children: [
             IconButton(
               icon: Icon(Icons.favorite),
-              color: Colors.red,
+              color: color,
               iconSize: 40,
               onPressed: _onClickFavorito,
             ),
@@ -109,7 +128,7 @@ class CarroScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        text(carro.descricao, bold: true),
+        text(widget.carro.descricao, bold: true),
         SizedBox(height: 10),
         FutureBuilder(
           future: LoripsumApu.getLoripsum(),
@@ -124,7 +143,11 @@ class CarroScreen extends StatelessWidget {
     );
   }
 
-  void _onClickFavorito() {
-    FavoritoService.favoritar(carro);
+  void _onClickFavorito() async {
+    bool favorito = await FavoritoService.favoritar(widget.carro);
+
+    setState(() {
+      color = favorito ? Colors.red : Colors.grey;
+    });
   }
 }
