@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projecto_carros/carro/carros_api.dart';
 import 'package:projecto_carros/helpers/api_response.dart';
+import 'package:projecto_carros/helpers/scaffold_messenger.dart';
 
 import 'carro.dart';
 
@@ -227,7 +228,14 @@ class _CarroFormPageState extends State<CarroFormPage> {
 
     print("Salvar o carro $c");
 
-    // ApiResponse<bool> response = await CarrosApi.save(c);
+    ApiResponse<bool> response = await CarrosApi.save(c);
+
+    if (response.ok) {
+      messenger(context, "carro salvado com sucesso");
+      Navigator.of(context).pop();
+    } else {
+      messenger(context, response.msg);
+    }
 
     await Future.delayed(Duration(seconds: 3));
 

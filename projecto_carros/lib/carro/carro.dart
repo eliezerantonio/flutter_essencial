@@ -47,7 +47,14 @@ class Carro extends Entity {
   }
 
   String toJsonC() {
-    String json = convert.json.encode(toJson);
+    String json = convert.json.encode(toJson());
     return json;
   }
+
+
+  @override
+  String toString() {
+    return 'Carro{id: $id, nome: $nome, tipo: $tipo, descricao: $descricao, urlFoto: $urlFoto, urlVideo: $urlVideo, latitude: $latitude, longitude: $longitude}';
+  }
+
 }

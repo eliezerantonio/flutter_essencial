@@ -40,7 +40,8 @@ class CarrosApi {
       "Authorization": "Bearer ${user.toJson}"
     };
 
-    var url = "https://carros-springboot.herokuapp.com/api/v2/carros";
+      var url =
+        'https://carros-springboot.herokuapp.com/api/v2/carros/';
 
     print("POST > $url");
 
