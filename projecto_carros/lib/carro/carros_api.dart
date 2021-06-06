@@ -44,7 +44,7 @@ class CarrosApi {
 
     print("POST > $url");
 
-    String json = c.toJson() as String;
+    String json = c.toJsonC();
 
     var response = await http.post(url, body: json, headers: headers);
 
