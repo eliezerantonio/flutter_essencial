@@ -42,7 +42,7 @@ class CarrosApi {
       "Authorization": "Bearer ${user.token}",
     };
 
-    var url = 'https://carros-springboot.herokuapp.com/api/v2/carros/';
+    var url = 'https://carros-springboot.herokuapp.com/api/v2/carros';
     if (c.id != null) {
       url += "/${c.id}";
     }
@@ -51,12 +51,14 @@ class CarrosApi {
 
     String json = c.toJsonC();
 
-    var response = await (c.id==null?http.post(url, body: json, headers: headers):http.put(url, body: json, headers: headers));
+    var response = await (c.id == null
+        ? http.post(url, body: json, headers: headers)
+        : http.put(url, body: json, headers: headers));
 
     print("reponse status: ${response.statusCode} ");
     print("response body: ${response.body}");
 
-    if (response.statusCode == 201||response.statusCode == 200) {
+    if (response.statusCode == 201 || response.statusCode == 200) {
       Map mapResponse = convert.json.decode(response.body);
 
       Carro carro = Carro.fromJson(mapResponse);
