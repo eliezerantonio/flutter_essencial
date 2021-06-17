@@ -59,9 +59,7 @@ class CarrosListView extends StatelessWidget {
                         ),
                         FlatButton(
                           child: const Text('SHARE'),
-                          onPressed: () {
-                            /* ... */
-                          },
+                          onPressed: () => _onLongClickCarro(c, context),
                         ),
                       ],
                     ),
@@ -80,5 +78,23 @@ class CarrosListView extends StatelessWidget {
       context,
       CarroScreen(c),
     );
+  }
+
+  void _onLongClickCarro(Carro c, BuildContext context) {
+    showDialog(context, builder(context)) {
+      return SimpleDialog(
+        title: Text(
+          c.nome,
+        ),
+        children: [
+          ListTile(
+            title: Text("Detalhes"),
+          ),
+          ListTile(
+            title: Text("Share"),
+          ),
+        ],
+      );
+    }
   }
 }

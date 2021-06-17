@@ -1,5 +1,20 @@
+import 'package:projecto_carros/helpers/event_bus.dart';
 import 'package:projecto_carros/helpers/sql/entity.dart';
 import 'dart:convert' as convert;
+
+class CarroEvent extends Event {
+  //salvar, deletar
+  String acao;
+//classicos, exportivos, luxo
+  String tipo;
+
+  CarroEvent(this.acao, this.tipo);
+
+  @override
+  String toString() {
+    return "CarroEvent : acao $acao,tipo $tipo ";
+  }
+}
 
 class Carro extends Entity {
   int id;
@@ -51,10 +66,8 @@ class Carro extends Entity {
     return json;
   }
 
-
   @override
   String toString() {
     return 'Carro{id: $id, nome: $nome, tipo: $tipo, descricao: $descricao, urlFoto: $urlFoto, urlVideo: $urlVideo, latitude: $latitude, longitude: $longitude}';
   }
-
 }

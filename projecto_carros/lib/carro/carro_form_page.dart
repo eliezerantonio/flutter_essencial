@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:projecto_carros/carro/carros_api.dart';
 import 'package:projecto_carros/helpers/api_response.dart';
+import 'package:projecto_carros/helpers/event_bus.dart';
 import 'package:projecto_carros/helpers/scaffold_messenger.dart';
 
 import 'carro.dart';
@@ -142,7 +143,10 @@ class _CarroFormPageState extends State<CarroFormPage> {
     return InkWell(
       onTap: _onClickFoto,
       child: imageFile != null
-          ? Image.file(imageFile, height: 150,)
+          ? Image.file(
+              imageFile,
+              height: 150,
+            )
           : carro != null
               ? CachedNetworkImage(
                   imageUrl: carro.urlFoto ??
@@ -241,6 +245,7 @@ class _CarroFormPageState extends State<CarroFormPage> {
 
     if (response.ok) {
       messenger(context, "carro salvado com sucesso");
+      EventBus.get(context).sendEvent(CarroEvent("carro salvo", c.tipo,));
       Navigator.of(context).pop();
     } else {
       messenger(context, response.msg);

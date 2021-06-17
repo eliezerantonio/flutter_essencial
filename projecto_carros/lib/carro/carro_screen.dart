@@ -4,6 +4,7 @@ import 'package:projecto_carros/carro/carros_api.dart';
 import 'package:projecto_carros/carro/loripsum_api.dart';
 import 'package:projecto_carros/favoritos/favorito_services.dart';
 import 'package:projecto_carros/helpers/api_response.dart';
+import 'package:projecto_carros/helpers/event_bus.dart';
 import 'package:projecto_carros/helpers/nav.dart';
 import 'package:projecto_carros/helpers/scaffold_messenger.dart';
 import 'package:projecto_carros/helpers/text.dart';
@@ -162,6 +163,7 @@ class _CarroScreenState extends State<CarroScreen> {
     ApiResponse<bool> response = await CarrosApi.delete(widget.carro);
     if (response.ok) {
       messenger(context, "Carro deletado com sucesso");
+      EventBus.get(context).sendEvent(CarroEvent("carro salvo", widget.carro.tipo,));
     } else {
       messenger(context, response.msg);
     }
