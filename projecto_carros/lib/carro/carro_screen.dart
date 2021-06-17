@@ -163,9 +163,19 @@ class _CarroScreenState extends State<CarroScreen> {
     ApiResponse<bool> response = await CarrosApi.delete(widget.carro);
     if (response.ok) {
       messenger(context, "Carro deletado com sucesso");
-      EventBus.get(context).sendEvent(CarroEvent("carro salvo", widget.carro.tipo,));
+      EventBus.get(context).sendEvent(CarroEvent(
+        "carro salvo",
+        widget.carro.tipo,
+      ));
     } else {
       messenger(context, response.msg);
+    }
+  }
+
+  void _onClickVideo(context) {
+    if (widget.carro.urlVideo != widget.carro.urlVideo.isNotEmpty) {
+    } else {
+      messenger(context, "Erro Este carro nao tem video!");
     }
   }
 }
