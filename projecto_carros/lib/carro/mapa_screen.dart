@@ -25,6 +25,6 @@ class MapaScreen extends StatelessWidget {
   }
 
   latLng() {
-    return LatLng(-22.951911, -43.2126759);
+    return carro.latLng();
   }
 }
