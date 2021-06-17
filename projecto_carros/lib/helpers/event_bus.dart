@@ -2,16 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-class Event{
 
+class Event {}
 
-}
 class EventBus {
   final _streamController = StreamController<Event>.broadcast();
 
-  Stream<String> get stream => _streamController.stream;
+  Stream<Event> get stream => _streamController.stream;
 
-  sendEvent(String event) {
+  sendEvent(Event event) {
     _streamController.add(event);
   }
 

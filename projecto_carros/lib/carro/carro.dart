@@ -3,7 +3,17 @@ import 'package:projecto_carros/helpers/sql/entity.dart';
 import 'dart:convert' as convert;
 
 class CarroEvent extends Event {
+  //salvar, deletar
   String acao;
+//classicos, exportivos, luxo
+  String tipo;
+
+  CarroEvent(this.acao, this.tipo);
+
+  @override
+  String toString() {
+    return "CarroEvent : acao $acao,tipo $tipo ";
+  }
 }
 
 class Carro extends Entity {
