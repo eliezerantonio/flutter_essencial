@@ -1,7 +1,9 @@
 import 'dart:async';
 
-class EventBus {
-  final _streamController = StreamController<String>();
+import 'package:flutter/material.dart';
+
+class EventBus extends ChangeNotifier {
+  final _streamController = StreamController<String>.broadcast();
 
   Stream<String> get stream => _streamController.stream;
 
