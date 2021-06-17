@@ -23,7 +23,7 @@ class _CarroPageState extends State<CarroPage>
     with AutomaticKeepAliveClientMixin<CarroPage> {
   TipoCarro get tipo => widget.tipoCarro;
 
-  StreamSubscription<String> subscription;
+  StreamSubscription<Event> subscription;
 
   final _bloc = CarrosBloc();
 
@@ -33,10 +33,13 @@ class _CarroPageState extends State<CarroPage>
   @override
   void initState() {
     super.initState();
-    _bloc.fetch(tipo);
 
     final bus = EventBus.get(context);
-    subscription = bus.stream.listen((event) {});
+    subscription = bus.stream.listen((e) {
+      CarroEvent carroEvent = e;
+      if (carroEvent.tipo == tipo) print("event $e");
+      _bloc.fetch(tipo);
+    });
   }
 
   _fetch() async {

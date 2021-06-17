@@ -245,7 +245,7 @@ class _CarroFormPageState extends State<CarroFormPage> {
 
     if (response.ok) {
       messenger(context, "carro salvado com sucesso");
-      EventBus.get(context).sendEvent("carro salvo");
+      EventBus.get(context).sendEvent(CarroEvent("carro salvo", c.tipo,));
       Navigator.of(context).pop();
     } else {
       messenger(context, response.msg);
