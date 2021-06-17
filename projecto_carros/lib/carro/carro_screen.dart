@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projecto_carros/carro/carro.dart';
 import 'package:projecto_carros/carro/carros_api.dart';
 import 'package:projecto_carros/carro/loripsum_api.dart';
+import 'package:projecto_carros/carro/mapa_screen.dart';
 import 'package:projecto_carros/carro/video_screen.dart';
 import 'package:projecto_carros/favoritos/favorito_services.dart';
 import 'package:projecto_carros/helpers/api_response.dart';
@@ -42,7 +43,7 @@ class _CarroScreenState extends State<CarroScreen> {
         actions: [
           IconButton(
             icon: Icon(Icons.place),
-            onPressed: () {},
+            onPressed: () => _onClickMap(context),
           ),
           IconButton(
             icon: Icon(Icons.videocam),
@@ -178,6 +179,16 @@ class _CarroScreenState extends State<CarroScreen> {
       push(context, VideoScreen(widget.carro));
     } else {
       messenger(context, "Erro Este carro nao tem video!");
+    }
+  }
+
+  _onClickMap(BuildContext context) {
+    if (widget.carro.latitude != null && widget.carro.longitude != null) {
+      push(
+          context,
+          MapaScreen(
+            carro: widget.carro,
+          ));
     }
   }
 }
