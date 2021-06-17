@@ -40,6 +40,7 @@ dependencies:
   url_launcher: ^5.0.1
   connectivity: ^0.4.2
   video_player: ^0.10.0+2
+  google_maps_flutter: ^0.2.0+5
   
 
 dev_dependencies:
