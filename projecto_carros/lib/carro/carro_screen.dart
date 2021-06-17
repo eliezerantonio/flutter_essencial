@@ -45,7 +45,7 @@ class _CarroScreenState extends State<CarroScreen> {
           ),
           IconButton(
             icon: Icon(Icons.videocam),
-            onPressed: () {},
+            onPressed: () =>_onClickVideo(context),
           ),
           PopupMenuButton<String>(
             itemBuilder: (BuildContext context) {
