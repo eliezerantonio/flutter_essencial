@@ -9,7 +9,7 @@ void main() => runApp(
       MultiProvider(
         providers: [
           ChangeNotifierProvider<FavoritosModel>(
-            create: (context) => FavoritosModel(),
+            create: (context) => FavoritosModel(), 
           )
         ],
         child: MaterialApp(
