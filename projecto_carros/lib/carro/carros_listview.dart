@@ -32,11 +32,14 @@ class CarrosListView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Center(
-                    child: CachedNetworkImage(
-                      imageUrl: c.urlFoto ??
-                          "https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Chevrolet_Impala_Coupe.png",
-                      width: 250,
+                  InkWell(
+                    onLongPress: () => _onLongClickCarro(c, context),
+                    child: Center(
+                      child: CachedNetworkImage(
+                        imageUrl: c.urlFoto ??
+                            "https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Chevrolet_Impala_Coupe.png",
+                        width: 250,
+                      ),
                     ),
                   ),
                   Text(
@@ -59,7 +62,7 @@ class CarrosListView extends StatelessWidget {
                         ),
                         FlatButton(
                           child: const Text('SHARE'),
-                          onPressed: () => _onLongClickCarro(c, context),
+                          onPressed: () => _onClickShare(c, context),
                         ),
                       ],
                     ),
@@ -89,12 +92,19 @@ class CarrosListView extends StatelessWidget {
         children: [
           ListTile(
             title: Text("Detalhes"),
+            leading: Icon(Icons.directions_car),
           ),
           ListTile(
             title: Text("Share"),
+            onTap: () => _onClickShare(c, context),
+             leading: Icon(Icons.share),
           ),
         ],
       );
     }
+  }
+
+  void _onClickShare(Carro c, BuildContext context) {
+    print("Share ${c.nome}");
   }
 }
