@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:projecto_carros/carro/carro_screen.dart';
 import 'package:projecto_carros/carro/carros_model.dart';
 import 'package:projecto_carros/helpers/nav.dart';
 import 'package:projecto_carros/widgets/text_error.dart';
+import 'package:share/share.dart';
 
 import 'carro.dart';
 import 'carros_api.dart';
@@ -32,11 +34,14 @@ class CarrosListView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Center(
-                    child: CachedNetworkImage(
-                      imageUrl: c.urlFoto ??
-                          "https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Chevrolet_Impala_Coupe.png",
-                      width: 250,
+                  InkWell(
+                    onLongPress: () => _onLongClickCarro(c, context),
+                    child: Center(
+                      child: CachedNetworkImage(
+                        imageUrl: c.urlFoto ??
+                            "https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Chevrolet_Impala_Coupe.png",
+                        width: 250,
+                      ),
                     ),
                   ),
                   Text(
@@ -59,7 +64,7 @@ class CarrosListView extends StatelessWidget {
                         ),
                         FlatButton(
                           child: const Text('SHARE'),
-                          onPressed: () => _onLongClickCarro(c, context),
+                          onPressed: () => _onClickShare(c, context),
                         ),
                       ],
                     ),
@@ -80,21 +85,32 @@ class CarrosListView extends StatelessWidget {
     );
   }
 
-  void _onLongClickCarro(Carro c, BuildContext context) {
-    showDialog(context, builder(context)) {
-      return SimpleDialog(
-        title: Text(
-          c.nome,
-        ),
+  _onLongClickCarro(Carro c, BuildContext context) {
+    shoModalBottonSheet(context, builder(context)) {
+      return Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
+          Text(
+            c.nome,
+            style: TextStyle(fontSize: 16),
+          ),
           ListTile(
             title: Text("Detalhes"),
+            leading: Icon(Icons.directions_car),
           ),
           ListTile(
             title: Text("Share"),
+            onTap: () => _onClickShare(c, context),
+            leading: Icon(Icons.share),
           ),
         ],
       );
     }
+  }
+
+  void _onClickShare(Carro c, BuildContext context) {
+    print("Share ${c.nome}");
+
+    Share.share(c.urlFoto);
   }
 }
