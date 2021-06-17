@@ -37,6 +37,10 @@ dependencies:
   cached_network_image: ^2.3.2
   image_picker: ^0.6.1+4
   share: ^0.6.0+1
+  url_launcher: ^5.0.1
+  connectivity: ^0.4.2
+  video_player: ^0.10.0+2
+  google_maps_flutter: ^0.2.0+5
   
 
 dev_dependencies:

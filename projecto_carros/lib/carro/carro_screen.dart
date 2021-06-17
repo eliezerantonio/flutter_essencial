@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projecto_carros/carro/carro.dart';
 import 'package:projecto_carros/carro/carros_api.dart';
 import 'package:projecto_carros/carro/loripsum_api.dart';
+import 'package:projecto_carros/carro/video_screen.dart';
 import 'package:projecto_carros/favoritos/favorito_services.dart';
 import 'package:projecto_carros/helpers/api_response.dart';
 import 'package:projecto_carros/helpers/event_bus.dart';
@@ -45,7 +46,7 @@ class _CarroScreenState extends State<CarroScreen> {
           ),
           IconButton(
             icon: Icon(Icons.videocam),
-            onPressed: () {},
+            onPressed: () => _onClickVideo(context),
           ),
           PopupMenuButton<String>(
             itemBuilder: (BuildContext context) {
@@ -163,9 +164,20 @@ class _CarroScreenState extends State<CarroScreen> {
     ApiResponse<bool> response = await CarrosApi.delete(widget.carro);
     if (response.ok) {
       messenger(context, "Carro deletado com sucesso");
-      EventBus.get(context).sendEvent(CarroEvent("carro salvo", widget.carro.tipo,));
+      EventBus.get(context).sendEvent(CarroEvent(
+        "carro salvo",
+        widget.carro.tipo,
+      ));
     } else {
       messenger(context, response.msg);
+    }
+  }
+
+  void _onClickVideo(context) {
+    if (widget.carro.urlVideo != widget.carro.urlVideo.isNotEmpty) {
+      push(context, VideoScreen(widget.carro));
+    } else {
+      messenger(context, "Erro Este carro nao tem video!");
     }
   }
 }

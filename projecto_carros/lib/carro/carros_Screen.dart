@@ -75,6 +75,8 @@ class _CarroPageState extends State<CarroPage>
     return _bloc.fetch(tipo);
   }
 
+  
+
   @override
   void dispose() {
     super.dispose();
