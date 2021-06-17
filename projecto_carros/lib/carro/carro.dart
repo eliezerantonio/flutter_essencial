@@ -1,3 +1,4 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:projecto_carros/helpers/event_bus.dart';
 import 'package:projecto_carros/helpers/sql/entity.dart';
 import 'dart:convert' as convert;
@@ -25,6 +26,12 @@ class Carro extends Entity {
   String urlVideo;
   String latitude;
   String longitude;
+  latLng() {
+    return LatLng(
+      latitude == null || latitude.isEmpty ? 0.0 : double.parse(latitude),
+      latitude == null || longitude.isEmpty ? 0.0 : double.parse(longitude),
+    );
+  }
 
   Carro({
     this.id,
