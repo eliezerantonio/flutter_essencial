@@ -35,7 +35,7 @@ class _CarroPageState extends State<CarroPage>
     super.initState();
     _bloc.fetch(tipo);
 
-    final bus = Provider.of<EventBus>(context, listen: false);
+    final bus = EventBus.get(context);
     subscription = bus.stream.listen((event) {});
   }
 
