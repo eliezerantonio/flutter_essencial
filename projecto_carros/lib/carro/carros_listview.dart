@@ -8,6 +8,7 @@ import 'package:projecto_carros/carro/carro_screen.dart';
 import 'package:projecto_carros/carro/carros_model.dart';
 import 'package:projecto_carros/helpers/nav.dart';
 import 'package:projecto_carros/widgets/text_error.dart';
+import 'package:share/share.dart';
 
 import 'carro.dart';
 import 'carros_api.dart';
@@ -109,5 +110,7 @@ class CarrosListView extends StatelessWidget {
 
   void _onClickShare(Carro c, BuildContext context) {
     print("Share ${c.nome}");
+
+    Share.share(c.urlFoto);
   }
 }
