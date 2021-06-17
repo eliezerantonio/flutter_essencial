@@ -9,7 +9,7 @@ class EventBus {
     _streamController.add(event);
   }
 
-  disponse() {
+  dispose() {
     _streamController.close();
   }
 }
