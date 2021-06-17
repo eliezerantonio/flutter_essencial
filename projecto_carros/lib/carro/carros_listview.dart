@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -83,13 +84,15 @@ class CarrosListView extends StatelessWidget {
     );
   }
 
-  void _onLongClickCarro(Carro c, BuildContext context) {
-    showDialog(context, builder(context)) {
-      return SimpleDialog(
-        title: Text(
-          c.nome,
-        ),
+  _onLongClickCarro(Carro c, BuildContext context) {
+    shoModalBottonSheet(context, builder(context)) {
+      return Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
+          Text(
+            c.nome,
+            style: TextStyle(fontSize: 16),
+          ),
           ListTile(
             title: Text("Detalhes"),
             leading: Icon(Icons.directions_car),
@@ -97,7 +100,7 @@ class CarrosListView extends StatelessWidget {
           ListTile(
             title: Text("Share"),
             onTap: () => _onClickShare(c, context),
-             leading: Icon(Icons.share),
+            leading: Icon(Icons.share),
           ),
         ],
       );
