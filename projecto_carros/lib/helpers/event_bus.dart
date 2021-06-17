@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+class Event{
 
+
+}
 class EventBus {
-  final _streamController = StreamController<String>.broadcast();
+  final _streamController = StreamController<Event>.broadcast();
 
   Stream<String> get stream => _streamController.stream;
 
